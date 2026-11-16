@@ -109,12 +109,12 @@
                         </div>
                         <button id="mia-hero-voice" 
                                 class="voice-btn"
-                                style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white; font-size: 24px; line-height: 1; padding: 0;"
+                                style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white; font-size: 32px !important; line-height: 1; padding: 0; min-width: 54px; min-height: 54px;"
                                 title="Voice conversation mode"
                                 onmouseover="this.style.background='rgba(102, 126, 234, 0.25)';this.style.borderColor='rgba(102, 126, 234, 0.5)'"
                                 onmouseout="this.style.background='rgba(102, 126, 234, 0.15)';this.style.borderColor='rgba(102, 126, 234, 0.3)'">
-                            <span id="mic-icon" style="display: inline; line-height: 1;">🎤</span>
-                            <span id="mic-active-icon" style="display: none; line-height: 1;">🔴</span>
+                            <span id="mic-icon" style="display: inline; line-height: 1; font-size: 32px !important;">🎤</span>
+                            <span id="mic-active-icon" style="display: none; line-height: 1; font-size: 32px !important;">🔴</span>
                         </button>
                         <button id="mia-hero-send" 
                                 class="mia-send-btn"
