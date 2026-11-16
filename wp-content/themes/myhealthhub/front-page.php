@@ -73,18 +73,13 @@ get_template_part('template-parts/voice-overlay');
 get_template_part('template-parts/featured-providers');
 
 // Browse by Category (primary categories)
-get_template_part('template-parts/browse-categories', null, array(
-    'primary_categories' => $primary_categories,
-));
-
 // Browse by Specialty (CSV + NPI combined)
-get_template_part('template-parts/browse-specialties', null, array(
-    'browse_items' => $browse_items,
-));
-
 // Browse by Location (city buttons)
-get_template_part('template-parts/browse-locations', null, array(
-    'cities' => $cities,
+// ↓ REPLACED WITH UNIFIED "Find Your Wellness" SECTION ↓
+get_template_part('template-parts/find-your-wellness', null, array(
+    'primary_categories' => $primary_categories,
+    'browse_items'       => $browse_items,
+    'cities'             => $cities,
 ));
 
 // Popular searches (SEO links)
