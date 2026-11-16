@@ -1,0 +1,542 @@
+/**
+ * MyHealthHub Mia - UI Polish & Modernization
+ * 
+ * Enhances the modern look and feel:
+ * - Refined button styles with hover/active states
+ * - Improved card shadows and borders
+ * - Better spacing and typography hierarchy
+ * - Smooth transitions and micro-interactions
+ * - Enhanced accessibility with focus states
+ * 
+ * @package MyHealthHub
+ * @version 1.0.0
+ */
+
+/* ===== BUTTON STYLES ===== */
+
+/* Primary button */
+.button-primary,
+.btn-primary,
+button[type="submit"],
+.wp-block-button__link {
+    background: linear-gradient(135deg, #0A74DA 0%, #4F46E5 100%);
+    color: white !important;
+    border: none !important;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(10, 116, 218, 0.3);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.button-primary:hover,
+.btn-primary:hover,
+button[type="submit"]:hover,
+.wp-block-button__link:hover {
+    background: linear-gradient(135deg, #0563B8 0%, #3D3FD0 100%);
+    box-shadow: 0 8px 25px rgba(10, 116, 218, 0.4);
+    transform: translateY(-2px);
+}
+
+.button-primary:active,
+.btn-primary:active,
+button[type="submit"]:active,
+.wp-block-button__link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(10, 116, 218, 0.3);
+}
+
+.button-primary:focus,
+.btn-primary:focus,
+button[type="submit"]:focus,
+.wp-block-button__link:focus {
+    outline: 2px solid #0A74DA;
+    outline-offset: 2px;
+}
+
+/* Secondary button */
+.button-secondary,
+.btn-secondary,
+.wp-block-button.is-style-outline .wp-block-button__link {
+    background: rgba(79, 70, 229, 0.1);
+    color: #4F46E5 !important;
+    border: 2px solid #4F46E5 !important;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.button-secondary:hover,
+.btn-secondary:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+    background: rgba(79, 70, 229, 0.15);
+    border-color: #3D3FD0 !important;
+    color: #3D3FD0 !important;
+}
+
+/* Tertiary button (text only) */
+.button-tertiary,
+.btn-tertiary {
+    background: transparent !important;
+    color: #4F46E5 !important;
+    border: none !important;
+    padding: 10px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button-tertiary:hover,
+.btn-tertiary:hover {
+    color: #3D3FD0 !important;
+}
+
+/* Outline button (for forms) */
+.button-outline,
+.btn-outline {
+    background: transparent !important;
+    color: #4F46E5 !important;
+    border: 1px solid #E5E7EB !important;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.button-outline:hover,
+.btn-outline:hover {
+    background: #F3F4F6 !important;
+    border-color: #4F46E5 !important;
+}
+
+/* ===== CARD STYLES ===== */
+
+.card,
+.mia-card,
+.wp-block-group {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.card:hover,
+.mia-card:hover {
+    border-color: #D1D5DB;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Card header */
+.card-header,
+.mia-card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #F3F4F6;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.02) 0%, rgba(10, 116, 218, 0.02) 100%);
+}
+
+.card-header h2,
+.mia-card-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1F2937;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-header h2 .dashicons,
+.mia-card-header h2 .dashicons {
+    font-size: 22px;
+    color: #4F46E5;
+}
+
+/* Card body */
+.card-body,
+.mia-card-body {
+    padding: 24px;
+}
+
+/* ===== FORM STYLES ===== */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
+
+/* Description text */
+.description {
+    color: #6B7280 !important;
+    font-size: 13px;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+/* Form row */
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row.horizontal {
+    flex-direction: row;
+    gap: 16px;
+}
+
+.form-row.horizontal > * {
+    flex: 1;
+}
+
+/* ===== HERO SECTION POLISH ===== */
+
+.mia-hero {
+    background: linear-gradient(135deg, #1E3A5F 0%, #2D2B5F 50%, #3B2E6B 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.mia-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+    pointer-events: none;
+}
+
+/* Glass card enhancement in hero */
+.mia-glass-card {
+    backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+/* ===== SECTION SPACING ===== */
+
+section {
+    margin: 60px 0;
+}
+
+@media (max-width: 768px) {
+    section {
+        margin: 40px 0;
+    }
+}
+
+/* Section title */
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1F2937;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #6B7280;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+/* ===== PILL/CHIP STYLES ===== */
+
+.chip,
+.mia-chip,
+.tag,
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(10, 116, 218, 0.05) 100%);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4F46E5;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.chip:hover,
+.mia-chip:hover,
+.tag:hover,
+.badge:hover {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(10, 116, 218, 0.1) 100%);
+    border-color: rgba(79, 70, 229, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ===== ICON STYLES ===== */
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(10, 116, 218, 0.05) 100%);
+}
+
+.icon-box.primary {
+    background: linear-gradient(135deg, #0A74DA 0%, #4F46E5 100%);
+    color: white;
+}
+
+.icon-box.success {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: white;
+}
+
+.icon-box.warning {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    color: white;
+}
+
+/* ===== LOADING STATES ===== */
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading,
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+.pulse {
+    animation: pulse-fade 2s ease-in-out infinite;
+}
+
+/* Skeleton loader */
+.skeleton {
+    background: linear-gradient(90deg, #E5E7EB 25%, #F3F4F6 50%, #E5E7EB 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: 4px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ===== TYPOGRAPHY ===== */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #1F2937;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    color: #000;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1F2937;
+    margin: 0 0 12px 0;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 8px 0;
+}
+
+p {
+    margin: 0 0 16px 0;
+}
+
+a {
+    color: #4F46E5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #3D3FD0;
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE IMPROVEMENTS ===== */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .button-primary,
+    .btn-primary,
+    button[type="submit"] {
+        width: 100%;
+        padding: 14px 20px;
+    }
+
+    .chip,
+    .mia-chip {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* ===== FOCUS VISIBLE FOR ACCESSIBILITY ===== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #4F46E5;
+    outline-offset: 2px;
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0F172A;
+        color: #E5E7EB;
+    }
+
+    .card,
+    .mia-card {
+        background: #1E293B;
+        border-color: #334155;
+    }
+
+    .card-header,
+    .mia-card-header {
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(10, 116, 218, 0.05) 100%);
+        border-color: #334155;
+    }
+
+    .card-header h2,
+    .mia-card-header h2 {
+        color: #E5E7EB;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="url"],
+    input[type="number"],
+    textarea,
+    select {
+        background: #1E293B;
+        border-color: #334155;
+        color: #E5E7EB;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #4F46E5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    label {
+        color: #CBD5E1;
+    }
+
+    .description {
+        color: #94A3B8 !important;
+    }
+
+    h1, h2, h3, h4 {
+        color: #E5E7EB;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

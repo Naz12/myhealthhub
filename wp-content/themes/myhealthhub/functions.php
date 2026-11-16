@@ -284,6 +284,12 @@ function myhh_enqueue_assets() {
     wp_enqueue_script('myhh-mia-message-links', MYHH_THEME_URI . '/assets/js/mia-message-links.js', array(), $mia_message_links_version . '-links-20261008a', true);
     wp_enqueue_style('myhh-mia-message-links', MYHH_THEME_URI . '/assets/css/mia-message-links.css', array('myhh-style'), $mia_message_links_version . '-links-20261008a');
 
+    // UI Polish: Modern design enhancements (buttons, cards, forms, animations) - global
+    $mia_ui_polish_version = file_exists(MYHH_THEME_DIR . '/assets/css/mia-ui-polish.css')
+        ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-ui-polish.css')
+        : MYHH_VERSION;
+    wp_enqueue_style('myhh-mia-ui-polish-global', MYHH_THEME_URI . '/assets/css/mia-ui-polish.css', array('myhh-style'), $mia_ui_polish_version);
+
     // Front-page-only Mia Hero assets
     if (is_front_page()) {
         $mia_realtime_v2 = defined('MYHH_MIA_REALTIME_V2')
