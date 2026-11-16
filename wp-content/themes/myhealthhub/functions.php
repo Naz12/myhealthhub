@@ -296,8 +296,12 @@ function myhh_enqueue_assets() {
         $mia_voice_states_version = file_exists(MYHH_THEME_DIR . '/assets/css/mia-voice-states.css')
             ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-voice-states.css')
             : MYHH_VERSION;
+        $mia_mobile_polish_version = file_exists(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
+            ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
+            : MYHH_VERSION;
         wp_enqueue_style('myhh-mia-hero', MYHH_THEME_URI . '/assets/css/mia-hero.css', array('myhh-style'), $mia_hero_css_version);
         wp_enqueue_style('myhh-mia-voice-states', MYHH_THEME_URI . '/assets/css/mia-voice-states.css', array('myhh-mia-hero'), $mia_voice_states_version);
+        wp_enqueue_style('myhh-mia-mobile-polish', MYHH_THEME_URI . '/assets/css/mia-mobile-polish.css', array('myhh-mia-voice-states'), $mia_mobile_polish_version);
 
         // Mia Hero JavaScript (utils → chat → voice chain)
         $mia_voice_utils_version = file_exists(MYHH_THEME_DIR . '/assets/js/mia-voice-utils.js')
@@ -315,6 +319,12 @@ function myhh_enqueue_assets() {
         // remote mtime, which otherwise leaves browsers on an older Mia router.
         $mia_voice_version = $mia_voice_version_base . '-realtime-20260908f';
         wp_enqueue_script('myhh-mia-hero-voice', MYHH_THEME_URI . '/assets/js/mia-hero-voice.js', array('myhh-mia-hero-chat'), $mia_voice_version, true);
+
+        // Mobile optimizations & performance enhancements
+        $mia_mobile_opt_version = file_exists(MYHH_THEME_DIR . '/assets/js/mia-mobile-optimizations.js')
+            ? filemtime(MYHH_THEME_DIR . '/assets/js/mia-mobile-optimizations.js')
+            : MYHH_VERSION;
+        wp_enqueue_script('myhh-mia-mobile-optimizations', MYHH_THEME_URI . '/assets/js/mia-mobile-optimizations.js', array('myhh-mia-hero-voice'), $mia_mobile_opt_version, true);
 
         $mia_openai_voice_version = file_exists(MYHH_THEME_DIR . '/assets/js/mia-openai-live.js')
             ? filemtime(MYHH_THEME_DIR . '/assets/js/mia-openai-live.js') : MYHH_VERSION;

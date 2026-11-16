@@ -10,7 +10,7 @@ class MyHH_Mia_OpenAI {
 
     public static function provider() {
         $provider = get_option('myhh_mia_ai_provider', 'grok');
-        if (in_array($provider, [self::PROVIDER_OPENAI, self::PROVIDER_DEEPSEEK], true)) {
+        if (in_array($provider, [self::PROVIDER_OPENAI, self::PROVIDER_DEEPSEEK, self::PROVIDER_GROK], true)) {
             return $provider;
         }
         return self::PROVIDER_GROK;
