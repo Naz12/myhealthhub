@@ -113,11 +113,14 @@
                                 title="Voice conversation mode"
                                 onmouseover="this.style.background='rgba(102, 126, 234, 0.25)';this.style.borderColor='rgba(102, 126, 234, 0.5)'"
                                 onmouseout="this.style.background='rgba(102, 126, 234, 0.15)';this.style.borderColor='rgba(102, 126, 234, 0.3)'">
-                            <svg id="mic-icon" width="22" height="22" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                            <svg id="mic-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 1C11.4477 1 11 1.44772 11 2V11C11 12.1046 11.8954 13 13 13C14.1046 13 15 12.1046 15 11V2C15 1.44772 14.5523 1 14 1H12Z" fill="white"/>
+                                <path d="M7 11C7 14.3137 9.68629 17 13 17C16.3137 17 19 14.3137 19 11H21C21 15.0294 18.0294 18.4 14.25 18.9V22H11.75V18.9C8.08203 18.4 5 15.0294 5 11H7Z" fill="white"/>
                             </svg>
-                            <svg id="mic-active-icon" style="display: none;" width="22" height="22" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                            <svg id="mic-active-icon" style="display: none;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 1C11.4477 1 11 1.44772 11 2V11C11 12.1046 11.8954 13 13 13C14.1046 13 15 12.1046 15 11V2C15 1.44772 14.5523 1 14 1H12Z" fill="white"/>
+                                <path d="M7 11C7 14.3137 9.68629 17 13 17C16.3137 17 19 14.3137 19 11H21C21 15.0294 18.0294 18.4 14.25 18.9V22H11.75V18.9C8.08203 18.4 5 15.0294 5 11H7Z" fill="white"/>
+                                <circle cx="13" cy="8" r="2" fill="#ef4444" opacity="0.8"/>
                             </svg>
                         </button>
                         <button id="mia-hero-send" 
