@@ -55,6 +55,9 @@ class MyHH_Admin {
         // AJAX handler for Google Maps key test
         add_action('wp_ajax_myhh_test_maps_key', array($this, 'ajax_test_maps_key'));
         add_action('wp_ajax_myhh_test_openai_key', array($this, 'ajax_test_openai_key'));
+        
+        // AJAX handler for Hive/DeepSeek API test
+        add_action('wp_ajax_myhh_test_hive_key', array($this, 'ajax_test_hive_key'));
     }
     
     /**
@@ -189,6 +192,60 @@ class MyHH_Admin {
             wp_send_json_error(array('message' => $result->get_error_message()));
         }
         wp_send_json_success(array('message' => 'OpenAI Decisions API connection succeeded. Save Mia Settings to keep any new key.'));
+    }
+
+    /**
+     * Test Hive/DeepSeek API connection (server-side, avoids CORS)
+     */
+    public function ajax_test_hive_key() {
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => 'Permission denied.'), 403);
+        }
+        
+        check_ajax_referer('myhh_test_hive_key', 'nonce');
+        
+        $key = isset($_POST['api_key']) && is_string($_POST['api_key'])
+            ? trim(wp_unslash($_POST['api_key'])) : '';
+        
+        if (empty($key)) {
+            wp_send_json_error(array('message' => 'Hive API key is required.'));
+        }
+        
+        // Test connection to Hive DeepSeek API
+        $response = wp_remote_post('https://api.thehive.ai/openai/v1/chat/completions', array(
+            'timeout' => 15,
+            'headers' => array(
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $key,
+            ),
+            'body' => wp_json_encode(array(
+                'model' => 'deepseek-ai/deepseek-v4.1-flash-1017',
+                'messages' => array(array('role' => 'user', 'content' => 'Say OK')),
+                'max_tokens' => 5,
+            )),
+        ));
+        
+        if (is_wp_error($response)) {
+            wp_send_json_error(array('message' => 'Connection failed: ' . $response->get_error_message()));
+        }
+        
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        
+        if (!is_array($data)) {
+            wp_send_json_error(array('message' => 'Invalid response from Hive API.'));
+        }
+        
+        if (isset($data['error'])) {
+            $error_msg = is_array($data['error']) ? ($data['error']['message'] ?? 'Unknown error') : $data['error'];
+            wp_send_json_error(array('message' => 'Hive API error: ' . $error_msg));
+        }
+        
+        if (isset($data['choices'][0]['message']['content'])) {
+            wp_send_json_success(array('message' => 'Hive DeepSeek API connection succeeded! Ready to use.'));
+        }
+        
+        wp_send_json_error(array('message' => 'Unexpected response from Hive API.'));
     }
     
     /**
@@ -1562,7 +1619,7 @@ class MyHH_Admin {
                             });
                         });
                         
-                        // Hive API test
+                        // Hive API test (server-side, avoids CORS issues)
                         var buttonHive = document.getElementById('myhh-test-hive');
                         if (buttonHive) {
                             buttonHive.addEventListener('click', function () {
@@ -1576,30 +1633,28 @@ class MyHH_Admin {
                                 
                                 buttonHive.disabled = true;
                                 buttonHive.textContent = 'Testing...';
-                                result.innerHTML = '<p style="color:#6B7280;"><span class="dashicons dashicons-update spin"></span> Testing Hive API...</p>';
+                                result.innerHTML = '<p style="color:#6B7280;"><span class="dashicons dashicons-update spin"></span> Testing Hive DeepSeek API...</p>';
                                 
-                                fetch('https://api.thehive.ai/openai/v1/chat/completions', {
+                                var body = new URLSearchParams();
+                                body.set('action', 'myhh_test_hive_key');
+                                body.set('nonce', <?php echo wp_json_encode(wp_create_nonce('myhh_test_hive_key')); ?>);
+                                body.set('api_key', key);
+                                
+                                fetch(<?php echo wp_json_encode(admin_url('admin-ajax.php')); ?>, {
                                     method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': 'Bearer ' + key
-                                    },
-                                    body: JSON.stringify({
-                                        model: 'deepseek-ai/deepseek-v4.1-flash-1017',
-                                        messages: [{role: 'user', content: 'Say OK'}],
-                                        max_tokens: 5
-                                    })
+                                    credentials: 'same-origin',
+                                    body: body
                                 })
-                                .then(function(r) { return r.json(); })
+                                .then(function(response) { return response.json(); })
                                 .then(function(data) {
                                     buttonHive.disabled = false;
                                     buttonHive.textContent = 'Test Connection';
-                                    if (data.choices && data.choices[0]) {
-                                        result.innerHTML = '<p style="color:#059669;"><span class="dashicons dashicons-yes-alt"></span> <strong>Success!</strong> Hive DeepSeek API is working.</p>';
-                                    } else if (data.error) {
-                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> <strong>Error:</strong> ' + (data.error.message || JSON.stringify(data.error)) + '</p>';
+                                    if (data.success && data.data && data.data.message) {
+                                        result.innerHTML = '<p style="color:#059669;"><span class="dashicons dashicons-yes-alt"></span> <strong>Success!</strong> ' + data.data.message + '</p>';
+                                    } else if (data.data && data.data.message) {
+                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> <strong>Error:</strong> ' + data.data.message + '</p>';
                                     } else {
-                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> Unexpected response from Hive API.</p>';
+                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> Unexpected response from server.</p>';
                                     }
                                 })
                                 .catch(function(err) {
