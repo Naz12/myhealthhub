@@ -109,19 +109,12 @@
                         </div>
                         <button id="mia-hero-voice" 
                                 class="voice-btn"
-                                style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white;"
+                                style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white; font-size: 0;"
                                 title="Voice conversation mode"
                                 onmouseover="this.style.background='rgba(102, 126, 234, 0.25)';this.style.borderColor='rgba(102, 126, 234, 0.5)'"
                                 onmouseout="this.style.background='rgba(102, 126, 234, 0.15)';this.style.borderColor='rgba(102, 126, 234, 0.3)'">
-                            <svg id="mic-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1C11.4477 1 11 1.44772 11 2V11C11 12.1046 11.8954 13 13 13C14.1046 13 15 12.1046 15 11V2C15 1.44772 14.5523 1 14 1H12Z" fill="white"/>
-                                <path d="M7 11C7 14.3137 9.68629 17 13 17C16.3137 17 19 14.3137 19 11H21C21 15.0294 18.0294 18.4 14.25 18.9V22H11.75V18.9C8.08203 18.4 5 15.0294 5 11H7Z" fill="white"/>
-                            </svg>
-                            <svg id="mic-active-icon" style="display: none;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 1C11.4477 1 11 1.44772 11 2V11C11 12.1046 11.8954 13 13 13C14.1046 13 15 12.1046 15 11V2C15 1.44772 14.5523 1 14 1H12Z" fill="white"/>
-                                <path d="M7 11C7 14.3137 9.68629 17 13 17C16.3137 17 19 14.3137 19 11H21C21 15.0294 18.0294 18.4 14.25 18.9V22H11.75V18.9C8.08203 18.4 5 15.0294 5 11H7Z" fill="white"/>
-                                <circle cx="13" cy="8" r="2" fill="#ef4444" opacity="0.8"/>
-                            </svg>
+                            <span id="mic-icon" style="display: inline-block; width: 24px; height: 24px;">🎤</span>
+                            <span id="mic-active-icon" style="display: none; width: 24px; height: 24px;">🔴</span>
                         </button>
                         <button id="mia-hero-send" 
                                 class="mia-send-btn"
