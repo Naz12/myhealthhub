@@ -190,11 +190,6 @@ class MyHH_Mia_OpenAI {
         return $response;
     }
 
-    private static function get_tts_cache_key($text, $language) {
-        // Generate cache key for TTS to avoid re-generating for same text
-        return 'mia_tts_' . substr(hash('sha256', $text . '|' . $language), 0, 16);
-    }
-
     public static function speech($text, $language) {
         $provider = self::provider();
         
