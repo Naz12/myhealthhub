@@ -116,6 +116,21 @@
             animation: none !important;
         }
         
+        /* Fix emoji sizing in voice button - prevent flex shrinking */
+        #mic-icon,
+        #mic-active-icon {
+            flex-shrink: 0 !important;
+            width: 32px !important;
+            height: 32px !important;
+        }
+        
+        #mic-icon img,
+        #mic-active-icon img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
         /* Quick start chips hover */
         .mia-chip {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
