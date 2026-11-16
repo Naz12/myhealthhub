@@ -1,0 +1,339 @@
+/**
+ * My Health Hub - GeoDirectory Custom Styles
+ */
+
+/* ========================================
+   DIRECTORY LISTING STYLES
+   ======================================== */
+
+/* Listing Card Enhancements */
+.geodir-listing-post {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 24px;
+}
+
+.geodir-listing-post:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.geodir-listing-post .geodir-post-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.geodir-listing-post .geodir-post-img img {
+    transition: transform 0.3s ease;
+}
+
+.geodir-listing-post:hover .geodir-post-img img {
+    transform: scale(1.05);
+}
+
+/* Listing Content */
+.geodir-listing-post .geodir-content {
+    padding: 24px;
+}
+
+.geodir-listing-post h3 {
+    margin: 0 0 12px;
+    font-size: 1.25rem;
+}
+
+.geodir-listing-post h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.geodir-listing-post h3 a:hover {
+    color: var(--color-primary);
+}
+
+/* Meta Information */
+.geodir-listing-post .geodir-post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-bottom: 12px;
+}
+
+.geodir-listing-post .geodir-post-meta i {
+    color: var(--color-primary);
+    margin-right: 4px;
+}
+
+/* Specialty Tags */
+.geodir-listing-post .geodir-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.geodir-listing-post .geodir-specialty-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--color-light);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    border-radius: 20px;
+}
+
+/* ========================================
+   SINGLE LISTING PAGE
+   ======================================== */
+
+.geodir-single-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.geodir-single-header {
+    margin-bottom: 32px;
+}
+
+.geodir-single-title {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.geodir-single-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: var(--color-text-light);
+    font-size: 0.9375rem;
+}
+
+.geodir-single-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 768px) {
+    .geodir-single-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar */
+.geodir-single-sidebar {
+    background: var(--color-light);
+    padding: 24px;
+    border-radius: 12px;
+    height: fit-content;
+}
+
+.geodir-single-sidebar h3 {
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.geodir-field-wrap {
+    margin-bottom: 16px;
+}
+
+.geodir-field-label {
+    font-size: 0.8125rem;
+    color: var(--color-text-light);
+    margin-bottom: 4px;
+}
+
+.geodir-field-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+}
+
+/* Action Buttons */
+.geodir-single-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.geodir-single-actions .btn {
+    width: 100%;
+    text-align: center;
+}
+
+/* ========================================
+   SEARCH & FILTER
+   ======================================== */
+
+.geodir-search-container {
+    background: var(--color-light);
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.geodir-search-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: end;
+}
+
+.geodir-search-form input,
+.geodir-search-form select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.geodir-search-form input:focus,
+.geodir-search-form select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(10, 116, 218, 0.1);
+}
+
+.geodir-search-form button {
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.geodir-search-form button:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Filter Bar */
+.geodir-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.geodir-filter-results {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+.geodir-filter-sort select {
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+/* ========================================
+   MAP STYLES
+   ======================================== */
+
+.geodir-map-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.geodir-map-canvas {
+    border-radius: 12px;
+}
+
+/* Map Info Window */
+.gm-style-iw {
+    padding: 16px !important;
+}
+
+.geodir-map-info-window h4 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+}
+
+.geodir-map-info-window p {
+    margin: 0 0 8px;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.geodir-map-info-window a {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.geodir-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.geodir-pagination a,
+.geodir-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.geodir-pagination a {
+    background: var(--color-light);
+    color: var(--color-text);
+}
+
+.geodir-pagination a:hover {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.geodir-pagination span.current {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .geodir-search-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .geodir-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .geodir-listing-post .geodir-content {
+        padding: 16px;
+    }
+    
+    .geodir-single-wrapper {
+        padding: 20px 16px;
+    }
+}

@@ -1,0 +1,1041 @@
+/* MyHealthHub - Consolidated Responsive Styles
+ *
+ * Merged from:
+ *   - /themes/myhealthhub/responsive.css (root, 811 lines)
+ *   - /themes/myhealthhub/assets/css/responsive.css (assets, 286 lines)
+ *
+ * Organized by breakpoint: base → 1024px → 768px → 480px → print
+ *
+ * @package MyHealthHub
+ */
+
+/* ==========================================================================
+   BASE RESPONSIVE (no media query)
+   ========================================================================== */
+
+/* --- Container --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* --- Page Hero --- */
+.page-hero {
+    padding: 80px 0 !important;
+}
+
+.page-hero h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.page-hero p {
+    font-size: 1.25rem;
+}
+
+/* --- Stats Grid --- */
+.stats-section {
+    padding: 60px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+/* --- Specialty Grid --- */
+.specialty-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+/* --- Features / Why Choose Grid --- */
+.features-grid,
+.why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* --- How It Works Grid --- */
+.how-it-works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* --- Two-Column Layout --- */
+.two-col-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+}
+
+/* --- Why Grid (2×2) --- */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+/* --- Contact Layout --- */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+}
+
+/* --- Forms --- */
+.form-card {
+    padding: 48px;
+    border-radius: 20px;
+}
+
+/* --- Preference Options --- */
+.preference-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* --- Contact Cards --- */
+.contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Search Box (Providers) --- */
+.search-box {
+    padding: 24px;
+    border-radius: 16px;
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* --- Directory Stats --- */
+.directory-stats {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+}
+
+/* --- CTA Section --- */
+.cta-section {
+    padding: 80px 0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* --- Insurance Grid --- */
+.insurance-logos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+/* --- Footer Grid --- */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+}
+
+/* --- Section Padding --- */
+.section-standard {
+    padding: 80px 0;
+}
+
+/* --- Buttons --- */
+.btn-primary,
+.btn-secondary {
+    min-height: 44px; /* Touch-friendly */
+    min-width: 44px;
+}
+
+/* --- Utility Classes --- */
+.text-center-mobile {
+    text-align: inherit;
+}
+
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+/* --- Directory Placeholder --- */
+.directory-placeholder {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* --- Quick Links Card --- */
+.quick-links-card {
+    padding: 32px;
+    border-radius: 16px;
+}
+
+/* --- About Stats Box --- */
+.about-stats-box {
+    padding: 48px;
+    border-radius: 24px;
+}
+
+/* --- Images --- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Prevent Horizontal Scroll --- */
+html, body {
+    overflow-x: hidden;
+}
+
+.container,
+section {
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   TABLET AND BELOW (max-width: 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    :root {
+        --container-max: 100%;
+    }
+
+    .container {
+        padding: 0 var(--spacing-4);
+    }
+
+    .hero {
+        padding: var(--spacing-12) 0;
+    }
+
+    .hero__title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .content-section {
+        padding: var(--spacing-12) 0;
+    }
+}
+
+/* ==========================================================================
+   TABLET – min-width: 769px  (desktop-only overrides)
+   ========================================================================== */
+@media (min-width: 769px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+
+    .mobile-nav {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE (max-width: 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* --- CSS Custom Property Overrides --- */
+    :root {
+        --header-height: 64px;
+        --font-size-4xl: 1.875rem;
+        --font-size-3xl: 1.5rem;
+        --font-size-2xl: 1.25rem;
+    }
+
+    /* --- Typography --- */
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.125rem !important;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    /* --- Header --- */
+    .site-header {
+        position: relative;
+    }
+
+    .site-header .container {
+        padding: 0 16px !important;
+        height: 64px !important;
+    }
+
+    .main-navigation {
+        display: none;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: var(--color-background);
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--spacing-4);
+        box-shadow: var(--shadow);
+    }
+
+    .main-navigation.is-open {
+        display: block;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: var(--spacing-3) 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--spacing-2);
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: var(--color-text);
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-nav.active {
+        display: block !important;
+    }
+
+    /* --- Site Branding --- */
+    .site-branding a {
+        gap: 8px !important;
+    }
+
+    .site-branding .logo-icon {
+        width: 36px !important;
+        height: 36px !important;
+    }
+
+    .site-branding .logo-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .site-branding .logo-text {
+        font-size: 1.1rem !important;
+    }
+
+    /* --- BEM Hero (template-based) --- */
+    .hero {
+        padding: var(--spacing-10) 0;
+        text-align: left;
+    }
+
+    .hero__title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero__subtitle {
+        font-size: var(--font-size-base);
+    }
+
+    .hero__cta {
+        flex-direction: column;
+    }
+
+    .hero__cta .btn {
+        width: 100%;
+    }
+
+    /* --- Page Hero --- */
+    .page-hero {
+        padding: 48px 0 !important;
+    }
+
+    .page-hero h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.3 !important;
+        padding: 0 8px;
+    }
+
+    .page-hero p {
+        font-size: 1rem !important;
+        padding: 0 8px;
+    }
+
+    /* --- Front Page Hero --- */
+    .front-hero {
+        padding: 60px 0 80px !important;
+    }
+
+    .front-hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .front-hero p {
+        font-size: 1rem !important;
+    }
+
+    .front-hero .badge {
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+    }
+
+    .hero-search {
+        padding: 16px !important;
+        margin: 0 8px !important;
+    }
+
+    .hero-search-form {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .hero-search-form > div {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    .hero-search-form button {
+        width: 100% !important;
+    }
+
+    .quick-links {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+    }
+
+    .quick-links a {
+        font-size: 0.85rem !important;
+        padding: 6px 12px !important;
+    }
+
+    /* --- Stats --- */
+    .stats-section {
+        padding: 40px 0 !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 24px !important;
+    }
+
+    .stats-grid .stat-number {
+        font-size: 2rem !important;
+    }
+
+    .stats-grid .stat-label {
+        font-size: 0.85rem !important;
+    }
+
+    /* --- Specialty Grid --- */
+    .specialty-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .specialty-grid a,
+    .specialty-grid > div {
+        padding: 16px 12px !important;
+    }
+
+    .specialty-grid span {
+        font-size: 0.8rem !important;
+    }
+
+    /* --- Features / Why Choose Grid --- */
+    .features-grid,
+    .why-choose-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .features-grid .card,
+    .why-choose-grid .card {
+        padding: 24px !important;
+    }
+
+    .features-grid .icon-box,
+    .why-choose-grid .icon-box {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .features-grid h3,
+    .why-choose-grid h3 {
+        font-size: 1.1rem !important;
+    }
+
+    /* --- How It Works --- */
+    .how-it-works-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+
+    .how-it-works-grid .step-card {
+        padding: 24px !important;
+    }
+
+    .step-number {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 1.25rem !important;
+    }
+
+    /* --- Two-Column Layout --- */
+    .two-col-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .two-col-layout h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .two-col-layout p {
+        font-size: 1rem !important;
+    }
+
+    /* --- Why Grid (2×2) --- */
+    .why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .why-grid > div {
+        padding: 16px !important;
+    }
+
+    .why-grid h4 {
+        font-size: 1rem !important;
+    }
+
+    .why-grid p {
+        font-size: 0.9rem !important;
+    }
+
+    /* --- Contact Layout --- */
+    .contact-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    /* --- Forms --- */
+    .form-card {
+        padding: 24px 20px !important;
+    }
+
+    .form-card h2 {
+        font-size: 1.25rem !important;
+    }
+
+    .form-card input,
+    .form-card select,
+    .form-card textarea {
+        padding: 12px 14px !important;
+        font-size: 1rem !important;
+    }
+
+    .form-card button[type="submit"] {
+        padding: 14px !important;
+        font-size: 1rem !important;
+    }
+
+    /* iOS zoom prevention */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    .form-radio-group,
+    .form-checkbox-group {
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    /* --- Preference Options --- */
+    .preference-options {
+        flex-direction: column !important;
+    }
+
+    .preference-options label {
+        width: 100% !important;
+    }
+
+    /* --- Contact Cards --- */
+    .contact-cards {
+        gap: 16px !important;
+    }
+
+    .contact-cards > div {
+        padding: 16px !important;
+    }
+
+    .contact-cards .icon-box {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .contact-cards h4 {
+        font-size: 0.95rem !important;
+    }
+
+    .contact-cards p {
+        font-size: 0.9rem !important;
+    }
+
+    /* --- Search Box --- */
+    .search-section {
+        padding: var(--spacing-8) 0;
+    }
+
+    .search-box {
+        padding: 16px !important;
+    }
+
+    .search-form {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .search-form > div,
+    .search-form input,
+    .search-form select,
+    .search-form input[type="text"] {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    .search-form button {
+        width: 100% !important;
+    }
+
+    /* --- Directory Stats --- */
+    .directory-stats {
+        gap: 32px !important;
+    }
+
+    .directory-stats > div {
+        min-width: 80px;
+    }
+
+    .directory-stats .stat-number {
+        font-size: 2rem !important;
+    }
+
+    .directory-stats .stat-label {
+        font-size: 0.85rem !important;
+    }
+
+    /* --- CTA Sections --- */
+    .cta-section {
+        padding: 48px 0 !important;
+    }
+
+    .cta-section h2 {
+        font-size: 1.5rem !important;
+        padding: 0 16px;
+    }
+
+    .cta-section p {
+        font-size: 1rem !important;
+        padding: 0 16px;
+    }
+
+    .cta-buttons {
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 0 24px !important;
+    }
+
+    .cta-buttons a {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* --- Insurance Logos --- */
+    .insurance-logos {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .insurance-logos > div {
+        padding: 16px 12px !important;
+    }
+
+    .insurance-logos span {
+        font-size: 0.9rem !important;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+        padding: 40px 0 20px !important;
+    }
+
+    .site-footer .container {
+        padding: 0 16px !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        text-align: center !important;
+    }
+
+    .footer-grid > div:first-child {
+        order: -1;
+    }
+
+    .footer-grid .brand-desc {
+        max-width: 100% !important;
+    }
+
+    .footer-column__title {
+        margin-bottom: var(--spacing-3);
+    }
+
+    .social-links {
+        justify-content: center !important;
+    }
+
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 8px !important;
+    }
+
+    /* --- Section Padding --- */
+    .section-standard {
+        padding: 48px 0 !important;
+    }
+
+    /* --- Content Sections (BEM) --- */
+    .content-section {
+        padding: var(--spacing-10) 0;
+    }
+
+    .section-header {
+        margin-bottom: var(--spacing-8);
+    }
+
+    /* --- Trust Strip --- */
+    .trust-strip__content {
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+
+    /* --- Buttons --- */
+    .btn-primary,
+    .btn-secondary {
+        padding: 14px 24px !important;
+        font-size: 1rem !important;
+        width: 100%;
+    }
+
+    /* --- Utility Classes --- */
+    .text-center-mobile {
+        text-align: center !important;
+    }
+
+    .hide-mobile {
+        display: none !important;
+    }
+
+    .show-mobile {
+        display: block !important;
+    }
+
+    /* --- Directory Placeholder --- */
+    .directory-placeholder {
+        padding: 40px 16px !important;
+    }
+
+    .directory-placeholder h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .directory-placeholder p {
+        font-size: 1rem !important;
+    }
+
+    /* --- Quick Links Card --- */
+    .quick-links-card {
+        padding: 20px !important;
+    }
+
+    /* --- About Stats Box --- */
+    .about-stats-box {
+        padding: 24px !important;
+    }
+
+    .about-stats-box .big-number {
+        font-size: 3rem !important;
+    }
+
+    .about-stats-box .small-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+    }
+
+    .about-stats-box .small-stats .stat-number {
+        font-size: 1.5rem !important;
+    }
+
+    /* --- SVG Icons --- */
+    .icon-box svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    /* --- Page Content / Header (BEM) --- */
+    .page-content {
+        padding: var(--spacing-8) 0;
+    }
+
+    .page-header {
+        padding: var(--spacing-8) 0;
+    }
+
+    /* --- 404 Page --- */
+    .error-title {
+        font-size: 80px !important;
+    }
+
+    /* --- Search Results --- */
+    .search-result {
+        padding: var(--spacing-6) 0;
+    }
+
+    /* --- Listing Cards --- */
+    .listing-card__content {
+        padding: var(--spacing-4);
+    }
+
+    .listing-card__title {
+        font-size: var(--font-size-lg);
+    }
+
+    .listing-card__specialties {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+    }
+
+    .listing-card__tag {
+        margin: 0;
+    }
+
+    /* --- Testimonials --- */
+    .testimonial-item {
+        padding: var(--spacing-4);
+    }
+
+    /* --- Admin Dashboard --- */
+    .myhh-dashboard-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   SMALL MOBILE (max-width: 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+
+    /* --- CSS Custom Property Overrides --- */
+    :root {
+        --font-size-4xl: 1.5rem;
+        --font-size-3xl: 1.25rem;
+        --font-size-2xl: 1.125rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-3);
+    }
+
+    /* --- Page Hero --- */
+    .page-hero {
+        padding: 40px 0 !important;
+    }
+
+    .page-hero h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .page-hero p {
+        font-size: 0.95rem !important;
+    }
+
+    /* --- Front Hero --- */
+    .front-hero {
+        padding: 40px 0 60px !important;
+    }
+
+    .front-hero h1 {
+        font-size: 1.75rem !important;
+    }
+
+    /* --- Stats --- */
+    .stats-grid {
+        gap: 16px !important;
+    }
+
+    .stats-grid .stat-number {
+        font-size: 1.5rem !important;
+    }
+
+    /* --- Specialty Grid --- */
+    .specialty-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .specialty-grid a,
+    .specialty-grid > div {
+        padding: 12px 8px !important;
+    }
+
+    /* --- Directory Stats --- */
+    .directory-stats {
+        gap: 24px !important;
+    }
+
+    .directory-stats .stat-number {
+        font-size: 1.75rem !important;
+    }
+
+    /* --- Insurance Logos --- */
+    .insurance-logos {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* --- Section Padding --- */
+    .section-standard {
+        padding: 40px 0 !important;
+    }
+
+    /* --- Buttons (BEM) --- */
+    .btn--lg {
+        padding: var(--spacing-3) var(--spacing-6);
+        font-size: var(--font-size-base);
+    }
+
+    /* --- Search Box --- */
+    .search-box {
+        padding: var(--spacing-4);
+    }
+
+    /* --- Claim / Testimonials --- */
+    .claim-listing,
+    .testimonial-form-wrapper {
+        padding: var(--spacing-4);
+    }
+}
+
+/* ==========================================================================
+   SAFE AREA INSETS (notched phones)
+   ========================================================================== */
+@supports (padding: env(safe-area-inset-bottom)) {
+    .site-footer {
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+
+    .site-header {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+@media print {
+    .site-header,
+    .site-footer,
+    .hero__cta,
+    .mobile-menu-toggle,
+    .claim-listing,
+    .testimonial-form-wrapper {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #000;
+    }
+
+    .page-content {
+        padding: 0;
+    }
+}

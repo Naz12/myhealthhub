@@ -1,0 +1,211 @@
+/* MyHealthHub - Mia Voice States & Responsive Overrides - Extracted from front-page.php */
+
+/* Front Page Responsive Styles */
+@media (max-width: 768px) {
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-shell {
+        min-height: 0 !important;
+        height: 100%;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        gap: 12px;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-main {
+        order: 0 !important;
+        flex-shrink: 0;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-presence-card {
+        min-height: 0;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-side {
+        min-height: 0;
+        overflow: auto;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-status {
+        margin-top: 0 !important;
+    }
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-visual,
+    #mia-live-voice-overlay.is-transport-stalled #mia-live-thread-intro,
+    #mia-live-voice-overlay.is-transport-stalled #mia-live-mute,
+    #mia-live-voice-overlay.is-transport-stalled #mia-live-mic-mute,
+    #mia-live-voice-overlay.is-transport-stalled .mia-live-footer-note {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* AI-First Hero */
+    .mia-hero {
+        min-height: auto !important;
+        padding: 40px 0 60px !important;
+    }
+    .mia-hero .mia-avatar-ring {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .mia-hero .mia-avatar-ring > div {
+        width: 64px !important;
+        height: 64px !important;
+    }
+    .mia-hero .mia-avatar-ring svg {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    #mia-hero-interaction {
+        margin: 0 12px !important;
+        border-radius: 20px !important;
+    }
+    #mia-hero-interaction > div {
+        padding: 16px !important;
+    }
+    #mia-hero-input {
+        font-size: 1rem !important;
+        padding: 14px 16px !important;
+    }
+    .voice-btn {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    .mia-hero .trust-indicators {
+        gap: 16px !important;
+    }
+    .mia-hero .trust-indicators > div {
+        font-size: 0.8rem !important;
+    }
+    #mia-live-voice-overlay {
+        padding: 8px !important;
+    }
+    .mia-live-shell {
+        border-radius: 20px !important;
+        padding: 16px !important;
+        min-height: 92vh !important;
+    }
+    .mia-live-body {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+    .mia-live-main {
+        padding: 0 !important;
+        order: 2 !important;
+    }
+    .mia-live-side {
+        order: 1 !important;
+    }
+    .mia-live-thread-shell {
+        min-height: 0 !important;
+    }
+    .mia-live-thread-current {
+        min-height: 120px !important;
+    }
+    .mia-live-conversation {
+        max-height: 38vh !important;
+    }
+    .mia-live-visual {
+        width: 140px !important;
+        height: 140px !important;
+    }
+    .mia-live-avatar {
+        width: 72px !important;
+        height: 72px !important;
+    }
+    .mia-live-avatar svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    .mia-live-wave {
+        height: 26px !important;
+        gap: 4px !important;
+    }
+    .mia-live-wave span {
+        width: 4px !important;
+    }
+    .mia-live-status {
+        font-size: 1.1rem !important;
+        margin-top: 16px !important;
+    }
+    .mia-live-substatus {
+        font-size: 0.85rem !important;
+    }
+    .mia-live-caption {
+        font-size: 0.92rem !important;
+        min-height: 52px !important;
+    }
+    .mia-live-transcript {
+        font-size: 0.86rem !important;
+        min-height: 34px !important;
+    }
+    .mia-live-controls {
+        gap: 8px !important;
+    }
+    .mia-live-control {
+        min-width: 90px !important;
+        padding: 10px 12px !important;
+        font-size: 0.82rem !important;
+    }
+    .mia-live-panel {
+        padding: 12px !important;
+    }
+    .mia-live-presence-card,
+    .mia-live-mini-card {
+        padding: 14px !important;
+    }
+    
+    /* Category Grid */
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    .category-grid a { padding: 16px 12px !important; min-height: 120px !important; }
+    .category-grid svg { width: 24px !important; height: 24px !important; }
+    .category-grid span:first-of-type { font-size: 0.75rem !important; }
+    
+    /* Specialty Grid */
+    .specialty-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    /* Stats Section */
+    .stats-grid { flex-direction: column !important; }
+    .stat-item { width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+    .mia-hero {
+        padding: 32px 0 48px !important;
+    }
+    .mia-hero h1 {
+        font-size: 1.5rem !important;
+    }
+    .category-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .specialty-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .mia-live-shell {
+        padding: 14px !important;
+        min-height: 94vh !important;
+    }
+    .mia-live-header {
+        gap: 10px !important;
+    }
+    .mia-live-pill {
+        padding: 7px 12px !important;
+    }
+    .mia-live-visual {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    .mia-live-avatar {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .mia-live-thread-current {
+        padding: 16px !important;
+    }
+}
