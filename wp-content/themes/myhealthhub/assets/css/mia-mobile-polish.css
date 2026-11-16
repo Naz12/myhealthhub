@@ -1,6 +1,12 @@
 /**
- * MyHealthHub Mia - Mobile & UI Polish
- * Optimizations for improved mobile UX and accessibility
+ * MyHealthHub Mia - Responsive UI Polish
+ * 
+ * Improvements for desktop and mobile:
+ * - Better touch targets (48px minimum for mobile)
+ * - Improved keyboard navigation and focus states
+ * - Responsive typography and spacing
+ * - Loading skeletons for better UX feedback
+ * - Accessibility enhancements (WCAG AA contrast)
  * 
  * @package MyHealthHub
  * @version 1.0.0

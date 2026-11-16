@@ -299,8 +299,14 @@ function myhh_enqueue_assets() {
         $mia_mobile_polish_version = file_exists(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
             ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
             : MYHH_VERSION;
-        wp_enqueue_style('myhh-mia-hero', MYHH_THEME_URI . '/assets/css/mia-hero.css', array('myhh-style'), $mia_hero_css_version);
+wp_enqueue_style('myhh-mia-hero', MYHH_THEME_URI . '/assets/css/mia-hero.css', array('myhh-style'), $mia_hero_css_version);
         wp_enqueue_style('myhh-mia-voice-states', MYHH_THEME_URI . '/assets/css/mia-voice-states.css', array('myhh-mia-hero'), $mia_voice_states_version);
+        
+        // Polish: Responsive mobile improvements
+        $mia_mobile_polish_version = file_exists(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
+            ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-mobile-polish.css')
+            : MYHH_VERSION;
+        wp_enqueue_style('myhh-mia-mobile-polish', MYHH_THEME_URI . '/assets/css/mia-mobile-polish.css', array('myhh-mia-voice-states'), $mia_mobile_polish_version);
 
         // Mia Hero JavaScript (utils → chat → voice chain)
         $mia_voice_utils_version = file_exists(MYHH_THEME_DIR . '/assets/js/mia-voice-utils.js')
@@ -329,8 +335,13 @@ function myhh_enqueue_assets() {
             : MYHH_VERSION;
         wp_enqueue_script('myhh-mia-debug-console', MYHH_THEME_URI . '/assets/js/mia-debug-console.js', array('myhh-mia-hero-voice'), $mia_debug_version, true);
 
+        // Validate and pass selected chat provider; voice is independent (handled in mia-hero-voice.js)
+        $selected_provider = get_option('myhh_mia_ai_provider', 'grok');
+        $valid_providers = array('grok', 'openai', 'deepseek');
+        $aiProvider = in_array($selected_provider, $valid_providers, true) ? $selected_provider : 'grok';
+        
         wp_localize_script('myhh-mia-hero-voice', 'miaConfig', array(
-            'aiProvider'        => get_option('myhh_mia_ai_provider', 'grok') === 'openai' ? 'openai' : 'grok',
+            'aiProvider'        => $aiProvider,
             'ajaxUrl'           => admin_url('admin-ajax.php'),
             'nonce'             => wp_create_nonce('mia_chat_nonce'),
             'voiceProcessorUrl' => add_query_arg('ver', 'realtime-20260908f', plugins_url('myhealthhub-core/assets/js/mia-voice-processor.js')),
