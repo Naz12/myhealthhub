@@ -21,19 +21,17 @@
    HEADER & NAVIGATION - REDESIGNED
    =================================== */
 
-body header,
-.site-header,
-header.site-header {
-    background: var(--dark-gradient) !important;
+.site-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2) !important;
-    border-bottom: 3px solid;
-    border-image: linear-gradient(90deg, #667eea, #f5576c) 1;
-    position: relative;
+    border-bottom: 3px solid !important;
+    border-image: linear-gradient(90deg, #667eea, #f5576c) 1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
 }
 
-body header::after,
-.site-header::after,
-header.site-header::after {
+.site-header::before {
     content: '';
     position: absolute;
     top: 0;
@@ -44,59 +42,58 @@ header.site-header::after {
     animation: shimmer 3s infinite;
 }
 
-/* Header logo/branding - MAKE VISIBLE */
-body header .site-title,
-body header .site-branding,
-body header .logo,
-body header h1,
-.site-header .site-title,
-.site-header .site-branding,
-.site-header .logo,
-.site-header h1 {
+/* Logo text - HIGHLY VISIBLE */
+.logo-text {
     color: #fff !important;
     font-weight: 700 !important;
-    font-size: 24px !important;
-    text-shadow: 0 2px 10px rgba(102, 126, 234, 0.5) !important;
-    background: linear-gradient(135deg, #fff 0%, #e0d9ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 0.5px;
+    font-size: 22px !important;
+    letter-spacing: 0.5px !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-body header a,
-.site-header a,
-header.site-header a {
+.logo-text span {
     color: #fff !important;
-    font-weight: 500;
+}
+
+/* Logo icon background */
+.logo-icon {
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     transition: all 0.3s ease;
+}
+
+.logo-icon:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: scale(1.05);
+}
+
+/* Header links */
+.main-navigation a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
     position: relative;
 }
 
-body header a:hover,
-.site-header a:hover,
-header.site-header a:hover {
-    color: #f093fb !important;
-    text-shadow: 0 0 10px rgba(240, 147, 251, 0.5);
+.main-navigation a:hover {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-body header a::after,
-.site-header a::after,
-header.site-header a::after {
+.main-navigation a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: 8px;
+    left: 16px;
     width: 0;
     height: 2px;
-    background: var(--primary-gradient);
+    background: #fff;
     transition: width 0.3s ease;
 }
 
-body header a:hover::after,
-.site-header a:hover::after,
-header.site-header a:hover::after {
-    width: 100%;
+.main-navigation a:hover::after {
+    width: calc(100% - 32px);
 }
 
 /* ===================================
@@ -823,6 +820,69 @@ select:focus {
         padding: 25px !important;
     }
 }
+
+/* ===================================
+   SCROLL ANIMATIONS - FADE IN ON SCROLL
+   =================================== */
+
+.scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: scrollFadeIn 0.8s ease-out forwards;
+}
+
+.scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: scrollSlideLeft 0.8s ease-out forwards;
+}
+
+.scroll-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: scrollSlideRight 0.8s ease-out forwards;
+}
+
+.scroll-scale-up {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: scrollScaleUp 0.8s ease-out forwards;
+}
+
+@keyframes scrollFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollSlideLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scrollSlideRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scrollScaleUp {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Stagger delay for multiple elements */
+.scroll-fade-in:nth-child(1) { animation-delay: 0s; }
+.scroll-fade-in:nth-child(2) { animation-delay: 0.1s; }
+.scroll-fade-in:nth-child(3) { animation-delay: 0.2s; }
+.scroll-fade-in:nth-child(4) { animation-delay: 0.3s; }
+.scroll-fade-in:nth-child(5) { animation-delay: 0.4s; }
 
 /* ===================================
    ACCESSIBILITY

@@ -370,6 +370,12 @@ wp_enqueue_style('myhh-mia-hero', MYHH_THEME_URI . '/assets/css/mia-hero.css', a
             'overlapLookupPrototype' => false,
         )) . ');', 'before');
     }
+    
+    // Scroll Animations — trigger animations as elements come into view
+    $scroll_animations_version = file_exists(MYHH_THEME_DIR . '/assets/js/scroll-animations.js')
+        ? filemtime(MYHH_THEME_DIR . '/assets/js/scroll-animations.js')
+        : MYHH_VERSION;
+    wp_enqueue_script('myhh-scroll-animations', MYHH_THEME_URI . '/assets/js/scroll-animations.js', array(), $scroll_animations_version, true);
 }
 add_action('wp_enqueue_scripts', 'myhh_enqueue_assets');
 
