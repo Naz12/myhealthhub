@@ -9,27 +9,46 @@ get_header();
 ?>
 
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(135deg, #0A74DA 0%, #1e40af 100%); padding: 80px 0; color: white; text-align: center;">
-    <div class="container">
-        <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 16px;">Find a Provider</h1>
-        <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Browse our directory of verified mental health professionals in the Raleigh/Triangle area.</p>
+<section class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
+    <!-- Animated Background -->
+    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 1px, transparent 1px); background-size: 50px 50px; animation: float 20s infinite linear;"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
+            </svg>
+            <span style="font-size: 0.9rem; font-weight: 500;">Verified Mental Health Professionals</span>
+        </div>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">Find Your Perfect Provider</h1>
+        <p style="font-size: 1.25rem; opacity: 0.95; max-width: 650px; margin: 0 auto; line-height: 1.7;">Discover verified mental health professionals in the Raleigh/Triangle area. Filter by specialty, location, insurance, and more.</p>
     </div>
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(25px, 25px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
 </section>
 
 <!-- Search Section -->
-<section style="padding: 40px 0; background: #F8FAFC; border-bottom: 1px solid #E5E7EB;">
+<section style="padding: 50px 0; background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%); border-bottom: 2px solid #667eea;">
     <div class="container">
-        <div class="search-box" style="background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="search-box" style="background: white; border-radius: 20px; padding: 28px; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15); border: 2px solid #E5E7EB;">
             <form method="get" action="" class="search-form" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
                 <div style="flex: 2; min-width: 250px; position: relative;">
-                    <svg style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: #9CA3AF;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: #667eea;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                     <input type="text" name="s" placeholder="Search by name, specialty, or keyword..." 
-                           style="width: 100%; padding: 14px 14px 14px 48px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem;">
+                           style="width: 100%; padding: 14px 14px 14px 48px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;"
+                           onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'"
+                           onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                 </div>
                 <div style="flex: 1; min-width: 180px;">
-                    <select name="city" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; background: white;">
+                    <select name="city" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; background: white; transition: all 0.3s; cursor: pointer;"
+                            onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'"
+                            onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                         <option value="">All Locations</option>
                         <option value="raleigh">Raleigh</option>
                         <option value="durham">Durham</option>
@@ -39,7 +58,9 @@ get_header();
                     </select>
                 </div>
                 <div style="flex: 1; min-width: 180px;">
-                    <select name="specialty" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; background: white;">
+                    <select name="specialty" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; background: white; transition: all 0.3s; cursor: pointer;"
+                            onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'"
+                            onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                         <option value="">All Specialties</option>
                         <option value="anxiety">Anxiety</option>
                         <option value="depression">Depression</option>
@@ -50,8 +71,15 @@ get_header();
                         <option value="grief">Grief</option>
                     </select>
                 </div>
-                <button type="submit" style="padding: 14px 28px; background: linear-gradient(135deg, #0A74DA 0%, #1D4ED8 100%); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer;">
-                    Search
+                <button type="submit" style="padding: 14px 28px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);"
+                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 25px rgba(102, 126, 234, 0.4)'"
+                        onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        Search
+                    </span>
                 </button>
             </form>
         </div>

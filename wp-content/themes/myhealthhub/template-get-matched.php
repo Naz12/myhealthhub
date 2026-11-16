@@ -13,47 +13,58 @@ $specialties = get_terms(array('taxonomy' => 'myhh_specialty', 'hide_empty' => f
 ?>
 
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(135deg, #0A74DA 0%, #0858a8 100%); padding: 80px 0; color: white; text-align: center; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: 20px; left: 20px; width: 100px; height: 100px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
-    <div style="position: absolute; bottom: 20px; right: 40px; width: 150px; height: 150px; background: rgba(255,255,255,0.03); border-radius: 50%;"></div>
+<section class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
+    <!-- Animated background -->
+    <div style="position: absolute; top: 20px; left: 20px; width: 150px; height: 150px; background: rgba(240, 147, 251, 0.1); border-radius: 50%; animation: float 30s infinite linear;"></div>
+    <div style="position: absolute; bottom: 20px; right: 40px; width: 200px; height: 200px; background: rgba(102, 126, 234, 0.08); border-radius: 50%;"></div>
+    
     <div class="container" style="position: relative; z-index: 1;">
-        <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 30px; margin-bottom: 24px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.15); padding: 10px 24px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span style="font-weight: 500;">Free Provider Matching Service</span>
+            <span style="font-weight: 600; font-size: 0.95rem;">✨ Free AI-Powered Matching Service</span>
         </div>
-        <h1 style="font-size: 3rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.02em;">Get Matched</h1>
-        <p style="font-size: 1.25rem; opacity: 0.9; max-width: 550px; margin: 0 auto; line-height: 1.6;">Tell us what you're looking for and we'll connect you with the right wellness professional in the Triangle area.</p>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">Get Matched with Your Ideal Provider</h1>
+        <p style="font-size: 1.2rem; opacity: 0.95; max-width: 600px; margin: 0 auto; line-height: 1.8; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">Tell us what you're looking for and our AI will connect you with the perfect wellness professional in minutes.</p>
     </div>
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(25px, 25px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
 </section>
 
 <!-- Form Section -->
-<section class="section-standard" style="padding: 80px 0; background: #F8FAFC;">
+<section class="section-standard" style="padding: 80px 0; background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
     <div class="container">
         <div style="max-width: 640px; margin: 0 auto;">
             
             <?php if (isset($_GET['success']) && $_GET['success'] == '1') : ?>
-                <div style="background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-radius: 20px; padding: 48px; text-align: center;">
-                    <div style="width: 80px; height: 80px; background: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-                        <svg width="40" height="40" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 24px; padding: 64px 48px; text-align: center; box-shadow: 0 16px 48px rgba(102, 126, 234, 0.25);">
+                    <div style="width: 100px; height: 100px; background: rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px;">
+                        <svg width="48" height="48" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                         </svg>
                     </div>
-                    <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 12px; color: #065F46;">Thank You!</h2>
-                    <p style="color: #047857; font-size: 1.1rem; margin-bottom: 24px;">We have received your request and will be in touch within 24 hours to help you find the right provider.</p>
-                    <a href="<?php echo esc_url(home_url('/providers/')); ?>" style="display: inline-block; background: #059669; color: white; padding: 14px 28px; border-radius: 10px; font-weight: 600; text-decoration: none;">Browse Providers</a>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: white; letter-spacing: -0.01em;">🎉 Thank You!</h2>
+                    <p style="color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 28px; line-height: 1.7;">We've received your request! Our team will analyze your needs and connect you with the perfect provider within 24 hours.</p>
+                    <a href="<?php echo esc_url(home_url('/providers/')); ?>" style="display: inline-block; background: white; color: #667eea; padding: 14px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+                       onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'"
+                       onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'">Browse Providers Now</a>
                 </div>
             <?php else : ?>
             
-                <div style="background: white; border-radius: 20px; padding: 48px; border: 1px solid #E5E7EB; box-shadow: 0 4px 20px rgba(0,0,0,0.08);" class="form-card">
-                    <div style="text-align: center; margin-bottom: 32px;">
-                        <span style="display: inline-block; background: #EEF2FF; color: #0A74DA; padding: 6px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600; margin-bottom: 12px;">Free Consultation</span>
-                        <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #1F2937;">Find Your Perfect Match</h2>
-                        <p style="color: #6B7280; margin: 0;">Complete the form below and we'll pair you with a provider who meets your needs.</p>
+                <div style="background: white; border-radius: 24px; padding: 48px; border: 2px solid #E5E7EB; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.12);" class="form-card">
+                    <div style="text-align: center; margin-bottom: 36px;">
+                        <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 16px;">💡 AI-Powered Matching</span>
+                        <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 12px; color: #1F2937; letter-spacing: -0.01em;">Find Your Perfect Match</h2>
+                        <p style="color: #6B7280; margin: 0; font-size: 1rem;">Complete the form and our intelligent system will pair you with providers who meet your exact needs.</p>
                     </div>
                     
                     <form method="post" action="" class="get-matched-form">
@@ -61,27 +72,31 @@ $specialties = get_terms(array('taxonomy' => 'myhh_specialty', 'hide_empty' => f
                         <input type="hidden" name="myhh_form_action" value="submit_lead">
                         
                         <div style="margin-bottom: 24px;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">Your Name <span style="color: #EF4444;">*</span></label>
-                            <input type="text" id="lead_name" name="lead_name" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s;" 
-                                onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Your Name <span style="color: #f093fb;">*</span></label>
+                            <input type="text" id="lead_name" name="lead_name" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;" 
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                                onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                         </div>
                         
                         <div style="margin-bottom: 24px;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">Email Address <span style="color: #EF4444;">*</span></label>
-                            <input type="email" id="lead_email" name="lead_email" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s;"
-                                onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Email Address <span style="color: #f093fb;">*</span></label>
+                            <input type="email" id="lead_email" name="lead_email" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;"
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                                onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                         </div>
                         
                         <div style="margin-bottom: 24px;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">Phone Number</label>
-                            <input type="tel" id="lead_phone" name="lead_phone" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s;"
-                                onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Phone Number</label>
+                            <input type="tel" id="lead_phone" name="lead_phone" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;"
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                                onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                         </div>
                         
                         <div style="margin-bottom: 24px;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">City/Area</label>
-                            <select id="lead_city" name="lead_city" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; background: white; transition: border-color 0.2s;"
-                                onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">City/Area</label>
+                            <select id="lead_city" name="lead_city" style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; background: white; transition: all 0.3s; cursor: pointer;"
+                                onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                                onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                                 <option value="">Select an area</option>
                                 <option value="raleigh">Raleigh</option>
                                 <option value="durham">Durham</option>
@@ -93,11 +108,12 @@ $specialties = get_terms(array('taxonomy' => 'myhh_specialty', 'hide_empty' => f
                         </div>
                         
                         <div style="margin-bottom: 24px;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 12px; color: #374151;">Preference</label>
+                            <label style="display: block; font-weight: 600; margin-bottom: 12px; color: #374151;">Preference</label>
                             <div class="preference-options" style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 2px solid #E5E7EB; border-radius: 10px; cursor: pointer; transition: border-color 0.2s, background 0.2s;" 
-                                       onmouseover="this.style.borderColor='#0A74DA'" onmouseout="this.style.borderColor='#E5E7EB'">
-                                    <input type="radio" name="lead_preference" value="in-person" checked style="accent-color: #0A74DA;">
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 2px solid #E5E7EB; border-radius: 12px; cursor: pointer; transition: all 0.3s; background: white;" 
+                                       onmouseover="this.style.borderColor='#667eea';this.style.background='rgba(102, 126, 234, 0.05)'" 
+                                       onmouseout="this.style.borderColor='#E5E7EB';this.style.background='white'">
+                                    <input type="radio" name="lead_preference" value="in-person" checked style="accent-color: #667eea; cursor: pointer;">
                                     <span style="font-weight: 500;">In-Person</span>
                                 </label>
                                 <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 2px solid #E5E7EB; border-radius: 10px; cursor: pointer; transition: border-color 0.2s;"

@@ -9,75 +9,97 @@ get_header();
 ?>
 
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(135deg, #0A74DA 0%, #1e40af 50%, #0A74DA 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
-    <!-- Background Pattern -->
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.08;">
-        <svg width="100%" height="100%" style="position: absolute;">
-            <pattern id="hero-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="1.5" fill="white"/>
-            </pattern>
-            <rect width="100%" height="100%" fill="url(#hero-pattern)"/>
-        </svg>
-    </div>
+<section class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
+    <!-- Animated background shapes -->
+    <div style="position: absolute; top: 0; left: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 1px, transparent 1px); background-size: 40px 40px; animation: float 25s infinite linear; border-radius: 50%;"></div>
+    <div style="position: absolute; bottom: -50px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    
     <div class="container" style="position: relative; z-index: 1;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 30px; margin-bottom: 24px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
-            <span style="font-size: 0.875rem; font-weight: 500;">Serving the Triangle Area</span>
+            <span style="font-size: 0.9rem; font-weight: 500;">Serving the Triangle Area Since 2024</span>
         </div>
-        <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">Your Journey to Wellness<br><span style="opacity: 0.9;">Starts with the Right Guide</span></h1>
-        <p style="font-size: 1.25rem; opacity: 0.9; max-width: 650px; margin: 0 auto; line-height: 1.7;">We built My Health Hub because we believe finding a wellness professional shouldn't feel overwhelming. We're here to guide you to the right care, not just list providers.</p>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);">Your Journey to Wellness<br><span style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Starts Here</span></h1>
+        <p style="font-size: 1.25rem; opacity: 0.95; max-width: 650px; margin: 0 auto; line-height: 1.7; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);">We believe finding mental health support shouldn't be overwhelming. We're here to connect you with the right care.</p>
     </div>
 </section>
 
 <!-- Our Story Section -->
-<section style="padding: 100px 0; background: white;">
-    <div class="container">
+<section style="padding: 100px 0; background: white; position: relative; overflow: hidden;">
+    <!-- Background gradient glow -->
+    <div style="position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <span style="display: inline-block; background: #EEF2FF; color: #0A74DA; padding: 8px 20px; border-radius: 30px; font-size: 0.875rem; font-weight: 600; margin-bottom: 20px;">Our Story</span>
-            <h2 style="font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 24px; color: #1F2937; line-height: 1.2;">We Know How Hard It Is to Find Help</h2>
-            <p style="color: #6B7280; line-height: 1.9; font-size: 1.125rem; margin-bottom: 24px;">When you're struggling—whether with anxiety, depression, relationship issues, or just feeling stuck—the last thing you need is to spend hours scrolling through endless directories, unsure who to trust.</p>
-            <p style="color: #6B7280; line-height: 1.9; font-size: 1.125rem; margin-bottom: 24px;">We've been there. That's why we created My Health Hub: a different kind of directory designed around <strong style="color: #1F2937;">your</strong> journey, not just provider listings.</p>
-            <p style="color: #6B7280; line-height: 1.9; font-size: 1.125rem;">We serve the Raleigh, Durham, Chapel Hill, and greater Triangle area—connecting neighbors with local wellness professionals who understand our community.</p>
+            <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 24px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px;">Our Story</span>
+            <h2 style="font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 28px; color: #1F2937; line-height: 1.2; letter-spacing: -0.01em;">We Know How Hard It Is to Find Help</h2>
+            <p style="color: #6B7280; line-height: 2; font-size: 1.125rem; margin-bottom: 24px;">When you're struggling—whether with anxiety, depression, relationship issues, or just feeling stuck—the last thing you need is to spend hours scrolling through endless directories, unsure who to trust.</p>
+            <p style="color: #6B7280; line-height: 2; font-size: 1.125rem; margin-bottom: 24px;">We've been there. That's why we created My Health Hub: a different kind of directory designed around <strong style="color: #667eea; font-weight: 700;">your</strong> journey, not just provider listings.</p>
+            <p style="color: #6B7280; line-height: 2; font-size: 1.125rem; margin-bottom: 0;">We serve the Raleigh, Durham, Chapel Hill, and greater Triangle area—connecting neighbors with local wellness professionals who understand our community.</p>
         </div>
     </div>
 </section>
 
 <!-- How We Help Section -->
-<section style="padding: 100px 0; background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%);">
-    <div class="container">
+<section style="padding: 100px 0; background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%); position: relative; overflow: hidden;">
+    <!-- Background decoration -->
+    <div style="position: absolute; bottom: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
         <div style="text-align: center; margin-bottom: 64px;">
-            <span style="display: inline-block; background: white; color: #0A74DA; padding: 8px 20px; border-radius: 30px; font-size: 0.875rem; font-weight: 600; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">How We Help</span>
-            <h2 style="font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; color: #1F2937; margin-bottom: 16px;">Your Guide to Finding Care</h2>
+            <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 24px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px;">How We Help</span>
+            <h2 style="font-size: clamp(1.75rem, 4vw, 2.8rem); font-weight: 800; color: #1F2937; margin-bottom: 16px; letter-spacing: -0.01em;">Your Guide to Finding Care</h2>
             <p style="color: #6B7280; max-width: 600px; margin: 0 auto; font-size: 1.125rem;">Think of us as a knowledgeable friend who happens to know every wellness professional in town.</p>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1100px; margin: 0 auto;">
             <!-- Step 1 -->
-            <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #E5E7EB; position: relative;">
-                <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, #0A74DA 0%, #1D4ED8 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(10, 116, 218, 0.3);">1</div>
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 16px auto 24px;">
-                    <svg width="36" height="36" fill="none" stroke="#0A74DA" stroke-width="2" viewBox="0 0 24 24">
+            <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12); border: 1px solid #E5E7EB; position: relative; transition: all 0.3s; cursor: pointer;"
+                 onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 48px rgba(102, 126, 234, 0.16)'"
+                 onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 32px rgba(102, 126, 234, 0.12)'">
+                <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);">1</div>
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #E5E7FF 0%, #D8D9FF 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 16px auto 24px; transition: all 0.3s;">
+                    <svg width="36" height="36" fill="none" stroke="#667eea" stroke-width="2" viewBox="0 0 24 24">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="M21 21l-4.35-4.35"/>
                     </svg>
                 </div>
                 <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #1F2937;">Search Your Way</h3>
-                <p style="color: #6B7280; line-height: 1.7; margin: 0;">Browse by specialty, location, insurance, or session type. Filter until you find exactly what fits your life.</p>
+                <p style="color: #6B7280; line-height: 1.8; margin: 0;">Browse by specialty, location, insurance, or session type. Filter until you find exactly what fits your life.</p>
             </div>
             
             <!-- Step 2 -->
-            <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #E5E7EB; position: relative;">
-                <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, #059669 0%, #047857 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);">2</div>
-                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 16px auto 24px;">
+            <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12); border: 1px solid #E5E7EB; position: relative; transition: all 0.3s; cursor: pointer;"
+                 onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 48px rgba(102, 126, 234, 0.16)'"
+                 onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 32px rgba(102, 126, 234, 0.12)'">
+                <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, #059669 0%, #047857 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 16px rgba(5, 150, 105, 0.4);">2</div>
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 16px auto 24px; transition: all 0.3s;">
                     <svg width="36" height="36" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                     </svg>
                 </div>
                 <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #1F2937;">Compare Profiles</h3>
-                <p style="color: #6B7280; line-height: 1.7; margin: 0;">Read detailed bios, specialties, and client testimonials. No guessing—just clear, helpful information.</p>
+                <p style="color: #6B7280; line-height: 1.8; margin: 0;">Read detailed bios, specialties, and client testimonials. No guessing—just clear, helpful information.</p>
             </div>
+            
+            <!-- Step 3 -->
+            <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12); border: 1px solid #E5E7EB; position: relative; transition: all 0.3s; cursor: pointer;"
+                 onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 48px rgba(102, 126, 234, 0.16)'"
+                 onmouseout="this.style.transform='none';this.style.boxShadow='0 8px 32px rgba(102, 126, 234, 0.12)'">
+                <div style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 16px rgba(245, 87, 108, 0.4);">3</div>
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 16px auto 24px; transition: all 0.3s;">
+                    <svg width="36" height="36" fill="none" stroke="#f093fb" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    </svg>
+                </div>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #1F2937;">Connect with Care</h3>
+                <p style="color: #6B7280; line-height: 1.8; margin: 0;">Reach out directly or use our matching service. We'll help you take that first step when you're ready.</p>
+            </div>
+        </div>
+    </div>
+</section>
             
             <!-- Step 3 -->
             <div style="background: white; border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #E5E7EB; position: relative;">

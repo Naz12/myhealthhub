@@ -26,57 +26,81 @@ if ( isset( $_GET['upgrade'] ) ) {
 ?>
 
 <!-- Hero Section -->
-<section class="page-hero" style="background: linear-gradient(135deg, #0A74DA 0%, #1e40af 100%); padding: 80px 0; color: white; text-align: center;">
-    <div class="container">
+<section class="page-hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
+    <!-- Animated background -->
+    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 1px, transparent 1px); background-size: 50px 50px; animation: float 20s infinite linear;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
         <?php if ( $upgrade_tier ) : ?>
-            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 16px;">Upgrade to <?php echo esc_html( $upgrade_tier_label ); ?></h1>
-            <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">You're one step away from upgrading your listing. Let us know you're interested and we'll get you started.</p>
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+                <span style="font-size: 0.9rem; font-weight: 500;">Premium Upgrade</span>
+            </div>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">Upgrade to <?php echo esc_html( $upgrade_tier_label ); ?></h1>
+            <p style="font-size: 1.2rem; opacity: 0.95; max-width: 650px; margin: 0 auto; line-height: 1.7;">You're one step away from unlocking premium features. Let's get you started!</p>
         <?php else : ?>
-            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 16px;">Contact Us</h1>
-            <p style="font-size: 1.25rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">We'd love to hear from you. Get in touch with our team.</p>
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 8a4 4 0 014-4h10a4 4 0 014 4v8a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/>
+                </svg>
+                <span style="font-size: 0.9rem; font-weight: 500;">Let's Connect</span>
+            </div>
+            <h1 style="font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">Get in Touch</h1>
+            <p style="font-size: 1.2rem; opacity: 0.95; max-width: 650px; margin: 0 auto; line-height: 1.7;">Have questions? We'd love to hear from you. Our team is here to help.</p>
         <?php endif; ?>
     </div>
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(25px, 25px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
 </section>
 
 <!-- Contact Section -->
-<section class="section-standard" style="padding: 80px 0; background: white;">
+<section class="section-standard" style="padding: 80px 0; background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
     <div class="container">
         <div class="contact-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; max-width: 1000px; margin: 0 auto;">
             
             <!-- Contact Form -->
-            <div class="form-card" style="background: white; border-radius: 20px; padding: 40px; border: 1px solid #E5E7EB; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+            <div class="form-card" style="background: white; border-radius: 24px; padding: 40px; border: 2px solid #E5E7EB; box-shadow: 0 10px 40px rgba(102, 126, 234, 0.12);">
                 <?php if ( $upgrade_tier ) : ?>
                     <!-- Upgrade context banner -->
-                    <div style="background: linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 100%); border: 1px solid #BFDBFE; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;">
-                        <p style="font-weight: 600; color: #1E40AF; margin: 0 0 6px 0; font-size: 1.05rem;">
-                            <?php echo esc_html( $upgrade_tier_label ); ?> — <?php echo esc_html( $upgrade_tier_price ); ?>
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px; padding: 24px; margin-bottom: 28px; color: white;">
+                        <p style="font-weight: 700; margin: 0 0 8px 0; font-size: 1.1rem;">
+                            🚀 <?php echo esc_html( $upgrade_tier_label ); ?> — <?php echo esc_html( $upgrade_tier_price ); ?>
                         </p>
-                        <p style="color: #374151; margin: 0; font-size: 0.95rem;">
-                            Complete the form below and our team will follow up with everything you need to get started.
+                        <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95rem;">
+                            Complete the form and our team will follow up within 24 hours.
                         </p>
                     </div>
                     <input type="hidden" name="upgrade_tier" value="<?php echo esc_attr( $upgrade_tier ); ?>">
                 <?php endif; ?>
 
                 <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #1F2937;">
-                    <?php echo $upgrade_tier ? 'Tell Us About Your Practice' : 'Send us a Message'; ?>
+                    <?php echo $upgrade_tier ? '📋 Tell Us About Your Practice' : '✉️ Send us a Message'; ?>
                 </h2>
-                <p style="color: #6B7280; margin-bottom: 32px;">Fill out the form below and we'll get back to you within 24 hours.</p>
+                <p style="color: #6B7280; margin-bottom: 28px;">Fill out the form below and we'll get back to you within 24 hours.</p>
                 
                 <form method="post" action="">
                     <?php wp_nonce_field('myhh_contact', 'myhh_nonce'); ?>
                     <input type="hidden" name="myhh_form_action" value="contact">
                     
                     <div style="margin-bottom: 20px;">
-                        <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">Your Name <span style="color: #EF4444;">*</span></label>
-                        <input type="text" name="contact_name" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s;" 
-                            onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Your Name <span style="color: #f093fb;">*</span></label>
+                        <input type="text" name="contact_name" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;" 
+                            onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                            onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                     </div>
                     
                     <div style="margin-bottom: 20px;">
-                        <label style="display: block; font-weight: 500; margin-bottom: 8px; color: #374151;">Email Address <span style="color: #EF4444;">*</span></label>
-                        <input type="email" name="contact_email" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 1rem; transition: border-color 0.2s;"
-                            onfocus="this.style.borderColor='#0A74DA'" onblur="this.style.borderColor='#E5E7EB'">
+                        <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Email Address <span style="color: #f093fb;">*</span></label>
+                        <input type="email" name="contact_email" required style="width: 100%; padding: 14px 16px; border: 2px solid #E5E7EB; border-radius: 12px; font-size: 1rem; transition: all 0.3s;"
+                            onfocus="this.style.borderColor='#667eea';this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)'" 
+                            onblur="this.style.borderColor='#E5E7EB';this.style.boxShadow='none'">
                     </div>
                     
                     <div style="margin-bottom: 20px;">
