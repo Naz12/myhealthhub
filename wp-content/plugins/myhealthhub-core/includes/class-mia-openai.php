@@ -1,39 +1,105 @@
 <?php
-/** Server-side OpenAI transport for Mia. Credentials never enter browser payloads. */
+/** Server-side OpenAI/DeepSeek transport for Mia. Credentials never enter browser payloads. */
 if (!defined('ABSPATH')) { exit; }
 
 class MyHH_Mia_OpenAI {
+    // Provider constants
+    const PROVIDER_OPENAI = 'openai';
+    const PROVIDER_DEEPSEEK = 'deepseek';
+    const PROVIDER_GROK = 'grok';
+
     public static function provider() {
-        return get_option('myhh_mia_ai_provider', 'grok') === 'openai' ? 'openai' : 'grok';
+        $provider = get_option('myhh_mia_ai_provider', 'grok');
+        if (in_array($provider, [self::PROVIDER_OPENAI, self::PROVIDER_DEEPSEEK], true)) {
+            return $provider;
+        }
+        return self::PROVIDER_GROK;
     }
 
     public static function key() {
+        $provider = self::provider();
+        
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            $key = get_option('myhh_deepseek_api_key', '');
+            return trim((string) ($key ?: getenv('MYHH_DEEPSEEK_API_KEY')));
+        }
+        
+        // Default to OpenAI
         $key = get_option('myhh_openai_api_key', '');
         return trim((string) ($key ?: getenv('MYHH_OPENAI_API_KEY')));
     }
 
+    public static function model_for_intent() {
+        // Use faster, cheaper model for intent classification
+        $provider = self::provider();
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            return 'deepseek-v4.1-flash-1017'; // 50% faster
+        }
+        return 'gpt-4o-mini'; // OpenAI mini model (faster, cheaper)
+    }
+
+    public static function model_for_response() {
+        // Use full-power model for complex responses
+        $provider = self::provider();
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            return 'deepseek-v4.1'; // Full power
+        }
+        return 'gpt-6-luna'; // OpenAI reasoning model
+    }
+
+    private static function get_api_base() {
+        $provider = self::provider();
+        
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            return 'https://api.thehive.ai/api/v3';
+        }
+        
+        return 'https://api.openai.com/v1';
+    }
+
     private static function request($path, $body, $timeout) {
-        if (self::key() === '') { return new WP_Error('openai_not_configured', 'OpenAI is not configured.'); }
-        $response = wp_remote_post('https://api.openai.com/v1/' . $path, array(
-            'timeout' => $timeout, 'redirection' => 0,
-            'headers' => array('Authorization' => 'Bearer ' . self::key(), 'Content-Type' => 'application/json'),
+        $key = self::key();
+        if ($key === '') {
+            $provider = self::provider();
+            return new WP_Error(
+                'provider_not_configured',
+                'AI provider (' . esc_html($provider) . ') is not configured.'
+            );
+        }
+        
+        $base_url = self::get_api_base();
+        $url = rtrim($base_url, '/') . '/' . ltrim($path, '/');
+        
+        $response = wp_remote_post($url, array(
+            'timeout' => $timeout,
+            'redirection' => 0,
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $key,
+                'Content-Type' => 'application/json'
+            ),
             'body' => wp_json_encode($body),
         ));
+        
         if (is_wp_error($response)) {
-            return new WP_Error('openai_connection_failed', 'Mia could not connect to OpenAI. Please try again.', array('status' => 0));
+            return new WP_Error(
+                'provider_connection_failed',
+                'Mia could not connect to AI provider. Please try again.',
+                array('status' => 0)
+            );
         }
+        
         $status = (int) wp_remote_retrieve_response_code($response);
         if ($status < 200 || $status >= 300) {
-            $message = $status === 429 ? 'Mia has reached its OpenAI usage limit. Please try again later.'
-                : 'OpenAI could not complete this request. You can continue in text or try again.';
-            // Never forward upstream errors, request headers, keys, or SDP to logs.
-            return new WP_Error('openai_http_' . $status, $message, array('status' => $status));
+            $message = $status === 429 ? 'Mia has reached its API usage limit. Please try again later.'
+                : 'AI provider could not complete this request. You can continue in text or try again.';
+            return new WP_Error('provider_http_' . $status, $message, array('status' => $status));
         }
+        
         return $response;
     }
 
     /** Preserve the existing directory engine's completion response contract. */
-    public static function completion($args) {
+    public static function completion($args, $use_fast_model = false) {
         $legacy = json_decode($args['body'] ?? '{}', true);
         $input = array();
         foreach ($legacy['messages'] ?? array() as $message) {
@@ -42,34 +108,100 @@ class MyHH_Mia_OpenAI {
             if (!in_array($role, array('system', 'developer', 'user', 'assistant'), true)) { continue; }
             $input[] = array('role' => $role === 'system' ? 'developer' : $role, 'content' => $message['content']);
         }
-        $body = array('model' => 'gpt-6-luna', 'store' => false, 'input' => $input,
-            'reasoning' => array('effort' => (int) ($legacy['max_tokens'] ?? 500) < 500 ? 'none' : 'low'),
-            'max_output_tokens' => max(512, min(1600, (int) ($legacy['max_tokens'] ?? 500) * 4)));
+        
+        // Select model based on task complexity
+        $model = $use_fast_model ? self::model_for_intent() : self::model_for_response();
+        
+        $provider = self::provider();
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            // DeepSeek uses standard OpenAI API format
+            $body = array('model' => $model, 'messages' => $input, 'max_tokens' => 1024);
+        } else {
+            // OpenAI format
+            $body = array('model' => $model, 'store' => false, 'input' => $input,
+                'reasoning' => array('effort' => (int) ($legacy['max_tokens'] ?? 500) < 500 ? 'none' : 'low'),
+                'max_output_tokens' => max(512, min(1600, (int) ($legacy['max_tokens'] ?? 500) * 4)));
+        }
+        
         $response = self::request('responses', $body, max(6, min(30, (float) ($args['timeout'] ?? 20))));
         if (is_wp_error($response)) { return $response; }
+        
         $data = json_decode(wp_remote_retrieve_body($response), true);
         $text = '';
-        foreach ($data['output'] ?? array() as $item) {
-            if (($item['type'] ?? '') !== 'message' || ($item['role'] ?? '') !== 'assistant') { continue; }
-            foreach ($item['content'] ?? array() as $part) {
-                if (($part['type'] ?? '') === 'output_text') { $text .= (string) ($part['text'] ?? ''); }
+        
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            // DeepSeek response format
+            $choices = $data['choices'] ?? array();
+            if (!empty($choices[0]['message']['content'])) {
+                $text = $choices[0]['message']['content'];
+            }
+        } else {
+            // OpenAI response format
+            foreach ($data['output'] ?? array() as $item) {
+                if (($item['type'] ?? '') !== 'message' || ($item['role'] ?? '') !== 'assistant') { continue; }
+                foreach ($item['content'] ?? array() as $part) {
+                    if (($part['type'] ?? '') === 'output_text') { $text .= (string) ($part['text'] ?? ''); }
+                }
             }
         }
-        if (($data['status'] ?? '') !== 'completed' || trim($text) === '') {
-            return new WP_Error('openai_incomplete', 'Mia could not finish this answer. Please try again.');
+        
+        if (trim($text) === '') {
+            return new WP_Error('provider_incomplete', 'Mia could not finish this answer. Please try again.');
         }
-        $response['body'] = wp_json_encode(array('choices' => array(array('message' => array('content' => $text))), 'model' => 'gpt-6-luna'));
+        
+        $response['body'] = wp_json_encode(array(
+            'choices' => array(array('message' => array('content' => $text))), 
+            'model' => $model
+        ));
         return $response;
     }
 
+    private static function get_tts_cache_key($text, $language) {
+        // Generate cache key for TTS to avoid re-generating for same text
+        return 'mia_tts_' . substr(hash('sha256', $text . '|' . $language), 0, 16);
+    }
+
     public static function speech($text, $language) {
-        $response = self::request('audio/speech', array('model' => 'gpt-4o-mini-tts', 'voice' => 'marin',
-            'input' => $text, 'response_format' => 'mp3',
-            'instructions' => strpos($language, 'es') === 0 ? 'Speak warmly and naturally in Spanish.' : 'Speak warmly and naturally in English.'), 25);
+        // Check cache first (valid for 24 hours)
+        $cache_key = self::get_tts_cache_key($text, $language);
+        $cached = get_transient($cache_key);
+        if ($cached && is_array($cached) && isset($cached['bytes'], $cached['mime'])) {
+            return $cached;
+        }
+        
+        $provider = self::provider();
+        
+        if ($provider === self::PROVIDER_DEEPSEEK) {
+            // DeepSeek doesn't have TTS, fall back to OpenAI
+            $response = self::request('audio/speech', array(
+                'model' => 'gpt-4o-mini-tts',
+                'voice' => 'marin',
+                'input' => $text,
+                'response_format' => 'mp3',
+                'instructions' => strpos($language, 'es') === 0 ? 'Speak warmly and naturally in Spanish.' : 'Speak warmly and naturally in English.'
+            ), 25);
+        } else {
+            // OpenAI TTS
+            $response = self::request('audio/speech', array(
+                'model' => 'gpt-4o-mini-tts',
+                'voice' => 'marin',
+                'input' => $text,
+                'response_format' => 'mp3',
+                'instructions' => strpos($language, 'es') === 0 ? 'Speak warmly and naturally in Spanish.' : 'Speak warmly and naturally in English.'
+            ), 25);
+        }
+        
         if (is_wp_error($response)) { return $response; }
+        
         $bytes = wp_remote_retrieve_body($response);
-        if ($bytes === '') { return new WP_Error('openai_speech_empty', 'Voice reply is unavailable.'); }
-        return array('mime' => 'audio/mpeg', 'bytes' => $bytes);
+        if ($bytes === '') { return new WP_Error('speech_empty', 'Voice reply is unavailable.'); }
+        
+        $result = array('mime' => 'audio/mpeg', 'bytes' => $bytes);
+        
+        // Cache for 24 hours
+        set_transient($cache_key, $result, DAY_IN_SECONDS);
+        
+        return $result;
     }
 
     public static function live($sdp, $history = array()) {
