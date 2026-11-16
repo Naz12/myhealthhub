@@ -109,12 +109,14 @@
                         </div>
                         <button id="mia-hero-voice" 
                                 class="voice-btn"
-                                style="width: 54px; height: 54px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
-                                title="Voice conversation mode">
-                            <svg id="mic-icon" width="22" height="22" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" viewBox="0 0 24 24">
+                                style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white;"
+                                title="Voice conversation mode"
+                                onmouseover="this.style.background='rgba(102, 126, 234, 0.25)';this.style.borderColor='rgba(102, 126, 234, 0.5)'"
+                                onmouseout="this.style.background='rgba(102, 126, 234, 0.15)';this.style.borderColor='rgba(102, 126, 234, 0.3)'">
+                            <svg id="mic-icon" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                             </svg>
-                            <svg id="mic-active-icon" style="display: none;" width="22" height="22" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24">
+                            <svg id="mic-active-icon" style="display: none;" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                             </svg>
                         </button>
