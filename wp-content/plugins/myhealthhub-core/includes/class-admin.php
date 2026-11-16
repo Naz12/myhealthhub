@@ -126,9 +126,14 @@ class MyHH_Admin {
             'sanitize_callback' => array($this, 'sanitize_openai_api_key'),
             'show_in_rest' => false,
         ));
+        register_setting('myhh_mia_settings', 'myhh_deepseek_api_key', array(
+            'type' => 'string',
+            'sanitize_callback' => array($this, 'sanitize_api_key'),
+            'show_in_rest' => false,
+        ));
         register_setting('myhh_mia_settings', 'myhh_mia_ai_provider', array(
             'type' => 'string', 'default' => 'grok',
-            'sanitize_callback' => array($this, 'sanitize_decision_provider'),
+            'sanitize_callback' => array($this, 'sanitize_ai_provider'),
         ));
         register_setting('myhh_mia_settings', 'myhh_mia_decision_provider', array(
             'type' => 'string',
@@ -164,7 +169,11 @@ class MyHH_Admin {
     }
 
     public function sanitize_decision_provider($value) {
-        return $value === 'grok' ? 'grok' : 'openai';
+        return in_array($value, array('grok', 'openai'), true) ? $value : 'openai';
+    }
+
+    public function sanitize_ai_provider($value) {
+        return in_array($value, array('grok', 'openai', 'deepseek'), true) ? $value : 'grok';
     }
 
     public function ajax_test_openai_key() {
@@ -1485,36 +1494,58 @@ class MyHH_Admin {
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="myhh_mia_ai_provider">Mia AI provider</label></th>
+                            <th scope="row"><label for="myhh_deepseek_api_key">Hive AI (DeepSeek) API Key</label></th>
                             <td>
-                                <select name="myhh_mia_ai_provider" id="myhh_mia_ai_provider">
-                                    <option value="openai" <?php selected(get_option('myhh_mia_ai_provider', 'grok'), 'openai'); ?>>OpenAI — GPT-Live, Decisions and Responses</option>
-                                    <option value="grok" <?php selected(get_option('myhh_mia_ai_provider', 'grok'), 'grok'); ?>>Grok</option>
-                                </select>
-                                <p class="description">OpenAI handles voice, understanding and replies with your saved OpenAI key. Directory facts still come from this website. Switching provider takes effect on new page loads and voice sessions.</p>
+                                <?php 
+                                $hive_key = get_option('myhh_deepseek_api_key');
+                                $hive_key_masked = $hive_key ? substr($hive_key, 0, 6) . '...' . substr($hive_key, -4) . ' (' . strlen($hive_key) . ' chars)' : '';
+                                ?>
+                                <input type="password" name="myhh_deepseek_api_key" id="myhh_deepseek_api_key" value="" class="regular-text" placeholder="Enter Hive API key" autocomplete="new-password" data-lpignore="true">
+                                <button type="button" id="myhh-test-hive" class="button button-secondary">Test Connection</button>
+                                <p class="description">
+                                    <?php echo $hive_key ? 'Hive key saved (' . esc_html($hive_key_masked) . '). Leave blank to keep it.' : 'Enter your Hive AI API key for DeepSeek v4.1 Flash support.'; ?>
+                                    <a href="https://dashboard.thehive.ai" target="_blank" rel="noopener noreferrer">Get your API key</a>
+                                </p>
+                                <div id="myhh-hive-test-result" role="status" aria-live="polite"></div>
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="myhh_mia_decision_provider">Action selection</label></th>
+                            <th scope="row"><label for="myhh_mia_ai_provider">Mia Chat Provider</label></th>
+                            <td>
+                                <select name="myhh_mia_ai_provider" id="myhh_mia_ai_provider">
+                                    <option value="grok" <?php selected(get_option('myhh_mia_ai_provider', 'grok'), 'grok'); ?>>Grok (xAI) — Fast, real-time voice</option>
+                                    <option value="openai" <?php selected(get_option('myhh_mia_ai_provider', 'grok'), 'openai'); ?>>OpenAI — GPT-4, text chat</option>
+                                    <option value="deepseek" <?php selected(get_option('myhh_mia_ai_provider', 'grok'), 'deepseek'); ?>>DeepSeek (via Hive) — Fast, cost-efficient chat</option>
+                                </select>
+                                <p class="description">
+                                    Select which AI provider Mia uses for chat responses. <strong>Voice always uses Grok</strong> for best real-time performance.
+                                    Switching takes effect on new page loads and new voice sessions.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="myhh_mia_decision_provider">Action Selection</label></th>
                             <td>
                                 <select name="myhh_mia_decision_provider" id="myhh_mia_decision_provider">
-                                    <option value="openai" <?php selected(get_option('myhh_mia_decision_provider', 'openai'), 'openai'); ?>>OpenAI Decisions (default)</option>
-                                    <option value="grok" <?php selected(get_option('myhh_mia_decision_provider', 'openai'), 'grok'); ?>>Grok</option>
+                                    <option value="openai" <?php selected(get_option('myhh_mia_decision_provider', 'openai'), 'openai'); ?>>OpenAI Decisions</option>
+                                    <option value="grok" <?php selected(get_option('myhh_mia_decision_provider', 'openai'), 'grok'); ?>>Grok Classification</option>
                                 </select>
-                                <p class="description">In OpenAI mode, Mia always uses OpenAI Decisions with Responses understanding and built-in routing as fallback. This selection applies when Mia uses Grok.</p>
+                                <p class="description">In Grok chat mode, this selects whether to use OpenAI Decisions (more accurate) or Grok classification (faster).</p>
                             </td>
                         </tr>
                     </table>
+                    
                     <script>
                     (function () {
-                        var button = document.getElementById('myhh-test-openai');
-                        button.addEventListener('click', function () {
+                        // OpenAI test
+                        var buttonOpenAI = document.getElementById('myhh-test-openai');
+                        buttonOpenAI.addEventListener('click', function () {
                             var result = document.getElementById('myhh-openai-test-result');
                             var body = new URLSearchParams();
                             body.set('action', 'myhh_test_openai_key');
                             body.set('nonce', <?php echo wp_json_encode(wp_create_nonce('myhh_test_openai_key')); ?>);
                             body.set('api_key', document.getElementById('myhh_openai_api_key').value.trim());
-                            button.disabled = true;
+                            buttonOpenAI.disabled = true;
                             result.textContent = 'Testing OpenAI Decisions...';
                             fetch(<?php echo wp_json_encode(admin_url('admin-ajax.php')); ?>, {
                                 method: 'POST', credentials: 'same-origin', body: body
@@ -1527,14 +1558,67 @@ class MyHH_Admin {
                                 result.textContent = 'Connection failed. Refresh the page and try again.';
                                 result.style.color = '#DC2626';
                             }).finally(function () {
-                                button.disabled = false;
+                                buttonOpenAI.disabled = false;
                             });
                         });
+                        
+                        // Hive API test
+                        var buttonHive = document.getElementById('myhh-test-hive');
+                        if (buttonHive) {
+                            buttonHive.addEventListener('click', function () {
+                                var result = document.getElementById('myhh-hive-test-result');
+                                var key = document.getElementById('myhh_deepseek_api_key').value.trim();
+                                
+                                if (!key) {
+                                    result.innerHTML = '<p style="color:#D97706;"><span class="dashicons dashicons-warning"></span> Please enter a Hive API key first.</p>';
+                                    return;
+                                }
+                                
+                                buttonHive.disabled = true;
+                                buttonHive.textContent = 'Testing...';
+                                result.innerHTML = '<p style="color:#6B7280;"><span class="dashicons dashicons-update spin"></span> Testing Hive API...</p>';
+                                
+                                fetch('https://api.thehive.ai/openai/v1/chat/completions', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': 'Bearer ' + key
+                                    },
+                                    body: JSON.stringify({
+                                        model: 'deepseek-ai/deepseek-v4.1-flash-1017',
+                                        messages: [{role: 'user', content: 'Say OK'}],
+                                        max_tokens: 5
+                                    })
+                                })
+                                .then(function(r) { return r.json(); })
+                                .then(function(data) {
+                                    buttonHive.disabled = false;
+                                    buttonHive.textContent = 'Test Connection';
+                                    if (data.choices && data.choices[0]) {
+                                        result.innerHTML = '<p style="color:#059669;"><span class="dashicons dashicons-yes-alt"></span> <strong>Success!</strong> Hive DeepSeek API is working.</p>';
+                                    } else if (data.error) {
+                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> <strong>Error:</strong> ' + (data.error.message || JSON.stringify(data.error)) + '</p>';
+                                    } else {
+                                        result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> Unexpected response from Hive API.</p>';
+                                    }
+                                })
+                                .catch(function(err) {
+                                    buttonHive.disabled = false;
+                                    buttonHive.textContent = 'Test Connection';
+                                    result.innerHTML = '<p style="color:#DC2626;"><span class="dashicons dashicons-dismiss"></span> Connection failed: ' + err.message + '</p>';
+                                });
+                            });
+                        }
                     }());
                     </script>
                     
                     <p class="description" style="margin-bottom: 16px; padding: 12px; background: #FEF3C7; border-radius: 8px;">
-                        <strong>Note:</strong> Mia can use built-in text replies without a key. AI conversations need the key for your selected provider; OpenAI mode requires GPT-Live and gpt-6-luna project access.
+                        <strong>Chat Providers:</strong>
+                        <ul style="margin: 8px 0; padding-left: 20px;">
+                            <li><strong>Grok:</strong> Fast, real-time voice support. Best for conversational experience.</li>
+                            <li><strong>OpenAI:</strong> High accuracy, supports Decisions API. No real-time voice in this mode.</li>
+                            <li><strong>DeepSeek (Hive):</strong> Cost-efficient, fast chat. Voice always uses Grok for real-time performance.</li>
+                        </ul>
                     </p>
                     
                     <?php submit_button(__('Save Mia Settings', 'myhealthhub')); ?>

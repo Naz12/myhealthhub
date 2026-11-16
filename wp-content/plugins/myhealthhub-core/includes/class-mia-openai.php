@@ -21,12 +21,26 @@ class MyHH_Mia_OpenAI {
         
         if ($provider === self::PROVIDER_DEEPSEEK) {
             $key = get_option('myhh_deepseek_api_key', '');
-            return trim((string) ($key ?: getenv('MYHH_DEEPSEEK_API_KEY')));
+            if (!$key) {
+                $key = getenv('HIVE_API_KEY');
+            }
+            return trim((string) $key);
         }
         
-        // Default to OpenAI
-        $key = get_option('myhh_openai_api_key', '');
-        return trim((string) ($key ?: getenv('MYHH_OPENAI_API_KEY')));
+        if ($provider === self::PROVIDER_OPENAI) {
+            $key = get_option('myhh_openai_api_key', '');
+            if (!$key) {
+                $key = getenv('MYHH_OPENAI_API_KEY');
+            }
+            return trim((string) $key);
+        }
+        
+        // Grok fallback
+        $key = get_option('myhh_grok_api_key', '');
+        if (!$key) {
+            $key = getenv('MYHH_GROK_API_KEY');
+        }
+        return trim((string) $key);
     }
 
     public static function model_for_intent() {
@@ -51,10 +65,16 @@ class MyHH_Mia_OpenAI {
         $provider = self::provider();
         
         if ($provider === self::PROVIDER_DEEPSEEK) {
-            return 'https://api.thehive.ai/api/v3';
+            // TheHive AI provides OpenAI-compatible endpoint
+            return 'https://api.thehive.ai/openai/v1';
         }
         
-        return 'https://api.openai.com/v1';
+        if ($provider === self::PROVIDER_OPENAI) {
+            return 'https://api.openai.com/v1';
+        }
+        
+        // Grok doesn't use this method (handled by chatbot directly)
+        return '';
     }
 
     private static function request($path, $body, $timeout) {
@@ -98,45 +118,59 @@ class MyHH_Mia_OpenAI {
         return $response;
     }
 
-    /** Preserve the existing directory engine's completion response contract. */
     public static function completion($args, $use_fast_model = false) {
+        $provider = self::provider();
+        
+        // Only OpenAI and DeepSeek use this completion method
+        if ($provider === self::PROVIDER_GROK) {
+            return new WP_Error('provider_mismatch', 'Grok provider is not supported by this method.');
+        }
+        
         $legacy = json_decode($args['body'] ?? '{}', true);
         $input = array();
         foreach ($legacy['messages'] ?? array() as $message) {
             if (!is_string($message['content'] ?? null)) { continue; }
             $role = $message['role'] ?? 'user';
             if (!in_array($role, array('system', 'developer', 'user', 'assistant'), true)) { continue; }
-            $input[] = array('role' => $role === 'system' ? 'developer' : $role, 'content' => $message['content']);
+            $input[] = array('role' => $role === 'system' ? 'user' : $role, 'content' => $message['content']);
         }
         
-        // Select model based on task complexity
+        // Select model based on provider and task complexity
         $model = $use_fast_model ? self::model_for_intent() : self::model_for_response();
         
-        $provider = self::provider();
         if ($provider === self::PROVIDER_DEEPSEEK) {
-            // DeepSeek uses standard OpenAI API format
-            $body = array('model' => $model, 'messages' => $input, 'max_tokens' => 1024);
+            // DeepSeek via TheHive uses standard OpenAI API format
+            $body = array(
+                'model' => $model,
+                'messages' => $input,
+                'max_tokens' => 1024,
+                'temperature' => 0.7
+            );
         } else {
-            // OpenAI format
-            $body = array('model' => $model, 'store' => false, 'input' => $input,
+            // OpenAI with reasoning
+            $body = array(
+                'model' => $model,
+                'store' => false,
+                'input' => $input,
                 'reasoning' => array('effort' => (int) ($legacy['max_tokens'] ?? 500) < 500 ? 'none' : 'low'),
-                'max_output_tokens' => max(512, min(1600, (int) ($legacy['max_tokens'] ?? 500) * 4)));
+                'max_output_tokens' => max(512, min(1600, (int) ($legacy['max_tokens'] ?? 500) * 4))
+            );
         }
         
-        $response = self::request('responses', $body, max(6, min(30, (float) ($args['timeout'] ?? 20))));
+        $response = self::request('chat/completions', $body, max(6, min(30, (float) ($args['timeout'] ?? 20))));
         if (is_wp_error($response)) { return $response; }
         
         $data = json_decode(wp_remote_retrieve_body($response), true);
         $text = '';
         
         if ($provider === self::PROVIDER_DEEPSEEK) {
-            // DeepSeek response format
+            // Standard OpenAI response format
             $choices = $data['choices'] ?? array();
             if (!empty($choices[0]['message']['content'])) {
                 $text = $choices[0]['message']['content'];
             }
         } else {
-            // OpenAI response format
+            // OpenAI response format with reasoning
             foreach ($data['output'] ?? array() as $item) {
                 if (($item['type'] ?? '') !== 'message' || ($item['role'] ?? '') !== 'assistant') { continue; }
                 foreach ($item['content'] ?? array() as $part) {
@@ -150,7 +184,7 @@ class MyHH_Mia_OpenAI {
         }
         
         $response['body'] = wp_json_encode(array(
-            'choices' => array(array('message' => array('content' => $text))), 
+            'choices' => array(array('message' => array('content' => $text))),
             'model' => $model
         ));
         return $response;
@@ -162,34 +196,28 @@ class MyHH_Mia_OpenAI {
     }
 
     public static function speech($text, $language) {
-        // Check cache first (valid for 24 hours)
-        $cache_key = self::get_tts_cache_key($text, $language);
-        $cached = get_transient($cache_key);
-        if ($cached && is_array($cached) && isset($cached['bytes'], $cached['mime'])) {
-            return $cached;
-        }
-        
         $provider = self::provider();
         
-        if ($provider === self::PROVIDER_DEEPSEEK) {
-            // DeepSeek doesn't have TTS, fall back to OpenAI
-            $response = self::request('audio/speech', array(
-                'model' => 'gpt-4o-mini-tts',
-                'voice' => 'marin',
-                'input' => $text,
-                'response_format' => 'mp3',
-                'instructions' => strpos($language, 'es') === 0 ? 'Speak warmly and naturally in Spanish.' : 'Speak warmly and naturally in English.'
-            ), 25);
-        } else {
-            // OpenAI TTS
-            $response = self::request('audio/speech', array(
-                'model' => 'gpt-4o-mini-tts',
-                'voice' => 'marin',
-                'input' => $text,
-                'response_format' => 'mp3',
-                'instructions' => strpos($language, 'es') === 0 ? 'Speak warmly and naturally in Spanish.' : 'Speak warmly and naturally in English.'
-            ), 25);
+        // Only OpenAI has native TTS
+        if ($provider !== self::PROVIDER_OPENAI) {
+            return new WP_Error('speech_unsupported', 'Text-to-speech is only available with OpenAI provider.');
         }
+        
+        // Check cache first (valid for 24 hours) — only for fixed acknowledgements
+        $cache_key = self::get_tts_cache_key($text, $language);
+        if ($cache_key !== '') {
+            $cached = get_transient($cache_key);
+            if ($cached && is_array($cached) && isset($cached['bytes'], $cached['mime'])) {
+                return $cached;
+            }
+        }
+        
+        $response = self::request('audio/speech', array(
+            'model' => 'tts-1',
+            'voice' => 'alloy',
+            'input' => $text,
+            'response_format' => 'mp3'
+        ), 25);
         
         if (is_wp_error($response)) { return $response; }
         
@@ -198,10 +226,26 @@ class MyHH_Mia_OpenAI {
         
         $result = array('mime' => 'audio/mpeg', 'bytes' => $bytes);
         
-        // Cache for 24 hours
-        set_transient($cache_key, $result, DAY_IN_SECONDS);
+        // Cache only fixed acknowledgements for 24 hours
+        if ($cache_key !== '') {
+            set_transient($cache_key, $result, DAY_IN_SECONDS);
+        }
         
         return $result;
+    }
+    
+    private static function get_tts_cache_key($text, $language) {
+        // Only cache fixed acknowledgement clips — never arbitrary responses
+        $allowed_clips = array(
+            'en' => array('Let me look into that.', "I'll pull that up.", "One moment, I'm on it."),
+            'es' => array('Déjame revisarlo.', 'Voy a buscarlo.', 'Dame un momento.'),
+        );
+        
+        if (!isset($allowed_clips[$language]) || !in_array($text, $allowed_clips[$language], true)) {
+            return '';
+        }
+        
+        return 'mia_tts_fixed_' . md5($language . '|' . $text);
     }
 
     public static function live($sdp, $history = array()) {
