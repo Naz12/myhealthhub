@@ -289,6 +289,12 @@ function myhh_enqueue_assets() {
         ? filemtime(MYHH_THEME_DIR . '/assets/css/mia-ui-polish.css')
         : MYHH_VERSION;
     wp_enqueue_style('myhh-mia-ui-polish-global', MYHH_THEME_URI . '/assets/css/mia-ui-polish.css', array('myhh-style'), $mia_ui_polish_version);
+    
+    // Interactive Redesign: Gradient-heavy, chat-focused, animations
+    $interactive_redesign_version = file_exists(MYHH_THEME_DIR . '/assets/css/interactive-redesign.css')
+        ? filemtime(MYHH_THEME_DIR . '/assets/css/interactive-redesign.css')
+        : MYHH_VERSION;
+    wp_enqueue_style('myhh-interactive-redesign', MYHH_THEME_URI . '/assets/css/interactive-redesign.css', array('myhh-mia-ui-polish-global'), $interactive_redesign_version);
 
     // Front-page-only Mia Hero assets
     if (is_front_page()) {
