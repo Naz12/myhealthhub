@@ -35,41 +35,54 @@ $primary_categories = get_terms(array(
 ?>
 
 <!-- Hero Section -->
-<section style="background: linear-gradient(135deg, #0A74DA 0%, #0858a8 100%); padding: 80px 0 60px; color: white; text-align: center; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
-    <div style="position: absolute; bottom: -50px; left: 10%; width: 150px; height: 150px; background: rgba(255,255,255,0.03); border-radius: 50%;"></div>
+<section style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); padding: 100px 0 120px; color: white; text-align: center; position: relative; overflow: hidden;">
+    <!-- Animated background -->
+    <div style="position: absolute; top: -30px; right: -30px; width: 300px; height: 300px; background: rgba(240, 147, 251, 0.1); border-radius: 50%; animation: float 30s infinite linear;"></div>
+    <div style="position: absolute; bottom: -50px; left: 10%; width: 200px; height: 200px; background: rgba(102, 126, 234, 0.08); border-radius: 50%;"></div>
+    
     <div class="container" style="position: relative; z-index: 1;">
-        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.15); padding: 8px 18px; border-radius: 30px; margin-bottom: 20px;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.15); padding: 10px 24px; border-radius: 30px; margin-bottom: 24px; backdrop-filter: blur(10px);">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
             </svg>
-            <span style="font-weight: 500;">For Wellness Professionals</span>
+            <span style="font-weight: 600; font-size: 0.95rem;">Join Our Professional Network</span>
         </div>
-        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em;">Add Your Practice</h1>
-        <p style="font-size: 1.125rem; opacity: 0.9; max-width: 520px; margin: 0 auto; line-height: 1.6;">Submit your practice for inclusion in MyHealthHub. We'll review your submission and add you to our directory.</p>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">Add Your Practice</h1>
+        <p style="font-size: 1.2rem; opacity: 0.95; max-width: 600px; margin: 0 auto; line-height: 1.8; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">Get discovered by clients in the Raleigh/Triangle area. Join our network of verified wellness professionals.</p>
     </div>
+    <style>
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(25px, 25px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
 </section>
 
 <!-- Form Section -->
-<section style="padding: 60px 0; background: #F8FAFC;">
+<section style="padding: 80px 0; background: linear-gradient(135deg, #f8f9fb 0%, #f1f5f9 100%);">
     <div class="container">
         <div style="max-width: 700px; margin: 0 auto;">
             
             <?php if (isset($_GET['success']) && $_GET['success'] == '1') : ?>
                 <!-- Success State -->
-                <div style="background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); border-radius: 20px; padding: 48px; text-align: center;">
-                    <div style="width: 80px; height: 80px; background: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-                        <svg width="40" height="40" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 24px; padding: 64px 48px; text-align: center; box-shadow: 0 16px 48px rgba(102, 126, 234, 0.25);">
+                    <div style="width: 100px; height: 100px; background: rgba(255,255,255,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px;">
+                        <svg width="48" height="48" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                         </svg>
                     </div>
-                    <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: 12px; color: #065F46;">Submission Received!</h2>
-                    <p style="color: #047857; font-size: 1.05rem; margin-bottom: 24px; line-height: 1.6;">Thank you for submitting your practice. Our team will review your information and get back to you within 2-3 business days.</p>
+                    <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 16px; color: white; letter-spacing: -0.01em;">✨ Submission Received!</h2>
+                    <p style="color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 28px; line-height: 1.7;">Thank you for submitting your practice! Our team will review your information and get back to you within 2-3 business days to confirm your listing.</p>
                     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                        <a href="<?php echo esc_url(home_url('/listings/')); ?>" style="display: inline-flex; align-items: center; gap: 8px; background: #059669; color: white; padding: 14px 24px; border-radius: 10px; font-weight: 600; text-decoration: none;">
-                            Browse Providers
+                        <a href="<?php echo esc_url(home_url('/listings/')); ?>" style="display: inline-flex; align-items: center; gap: 8px; background: white; color: #667eea; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: all 0.3s;"
+                           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(0,0,0,0.2)'"
+                           onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+                            Browse Network
                         </a>
-                        <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-flex; align-items: center; gap: 8px; background: white; color: #059669; padding: 14px 24px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 2px solid #059669;">
+                        <a href="<?php echo esc_url(home_url('/')); ?>" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); color: white; padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; border: 2px solid rgba(255,255,255,0.3); transition: all 0.3s;"
+                           onmouseover="this.style.background='rgba(255,255,255,0.25)'"
+                           onmouseout="this.style.background='rgba(255,255,255,0.15)'">
                             Go Home
                         </a>
                     </div>
@@ -77,7 +90,7 @@ $primary_categories = get_terms(array(
             <?php else : ?>
             
                 <!-- Helper Note -->
-                <div style="background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                <div style="background: linear-gradient(135deg, #E5E7FF 0%, #D8D9FF 100%); border: 2px solid #667eea; border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; display: flex; align-items: start; gap: 12px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
                         <circle cx="12" cy="12" r="10"></circle>
                         <line x1="12" y1="16" x2="12" y2="12"></line>
