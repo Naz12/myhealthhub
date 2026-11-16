@@ -65,8 +65,8 @@ class MyHH_Mia_OpenAI {
         $provider = self::provider();
         
         if ($provider === self::PROVIDER_DEEPSEEK) {
-            // TheHive AI provides OpenAI-compatible endpoint
-            return 'https://api.thehive.ai/openai/v1';
+            // Deploy.com provides OpenAI-compatible endpoint for DeepSeek
+            return 'https://api.deploy.com/api/v1';
         }
         
         if ($provider === self::PROVIDER_OPENAI) {

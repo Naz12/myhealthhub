@@ -211,8 +211,8 @@ class MyHH_Admin {
             wp_send_json_error(array('message' => 'Hive API key is required.'));
         }
         
-        // Test connection to Hive DeepSeek API
-        $response = wp_remote_post('https://api.thehive.ai/openai/v1/chat/completions', array(
+        // Test connection to Deploy.com DeepSeek API (correct endpoint)
+        $response = wp_remote_post('https://api.deploy.com/api/v1/chat/completions', array(
             'timeout' => 15,
             'headers' => array(
                 'Content-Type' => 'application/json',
@@ -221,7 +221,6 @@ class MyHH_Admin {
             'body' => wp_json_encode(array(
                 'model' => 'deepseek-ai/deepseek-v4.1-flash-1017',
                 'messages' => array(array('role' => 'user', 'content' => 'Say OK')),
-                'max_tokens' => 5,
             )),
         ));
         
@@ -242,10 +241,10 @@ class MyHH_Admin {
         }
         
         if (isset($data['choices'][0]['message']['content'])) {
-            wp_send_json_success(array('message' => 'Hive DeepSeek API connection succeeded! Ready to use.'));
+            wp_send_json_success(array('message' => 'DeepSeek API connection succeeded! Ready to use.'));
         }
         
-        wp_send_json_error(array('message' => 'Unexpected response from Hive API.'));
+        wp_send_json_error(array('message' => 'Unexpected response from API.'));
     }
     
     /**
