@@ -115,7 +115,12 @@
                                 title="Voice conversation mode"
                                 onmouseover="this.style.background='rgba(102, 126, 234, 0.25)';this.style.borderColor='rgba(102, 126, 234, 0.5)'"
                                 onmouseout="this.style.background='rgba(102, 126, 234, 0.15)';this.style.borderColor='rgba(102, 126, 234, 0.3)'">
-                            <span id="mic-icon" style="display: inline; line-height: 1; font-size: 32px !important;">🎤</span>
+                            <span id="mic-icon" aria-hidden="true" style="display: block; position: relative;">
+                                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a3 3 0 00-3 3v6a3 3 0 006 0V5a3 3 0 00-3-3z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 10v1a7 7 0 01-14 0v-1M12 18v4M8 22h8"/>
+                                </svg>
+                            </span>
                             <span id="mic-active-icon" style="display: none; line-height: 1; font-size: 32px !important;">🔴</span>
                         </button>
                         <button id="mia-hero-send"
