@@ -8,7 +8,7 @@ A modern mental health provider directory platform for the Raleigh/Triangle area
 - **Voice Support** - Talk naturally with Mia using voice input/output (OpenAI & Grok)
 - **Provider Directory** - Browse therapists, counselors, and wellness professionals
 - **Smart Search** - Filter by specialty, location, and category
-- **Responsive Design** - Mobile-first, gradient-heavy modern UI
+- **Responsive Design** - Homepage layouts adapt to desktop, tablet, and mobile
 - **Multiple AI Providers** - OpenAI, Grok, and DeepSeek/Hive API support
 
 ## Tech Stack
@@ -68,15 +68,18 @@ wp-content/
 - **Chat Logic**: `assets/js/mia-hero-chat.js`
 - **Voice System**: `assets/js/mia-hero-voice.js`, `assets/js/mia-openai-live.js`
 - **API Routes**: `wp-json/myhh/v1/chat`, `wp-json/myhh/v1/voice`
-- **Styling**: `assets/css/mia-hero.css`, `assets/css/interactive-redesign.css`
+- **Styling**: `assets/css/homepage.css` (homepage), `assets/css/mia-hero.css`, `assets/css/interactive-redesign.css`
 
 ## Recent Updates
 
 ✅ Fixed microphone icon visibility in voice button  
-✅ Modernized UI with gradient designs across all pages  
-✅ Merged browse sections into unified "Find Your Wellness" interface  
-✅ Enhanced Popular Searches with interactive styling  
-✅ Added scroll animations and improved responsiveness  
+✅ Unified homepage styling and provider browsing
+✅ Improved Mia's homepage chat layout and mobile controls
+✅ Removed unverified homepage testimonials and insurance claims
+
+The homepage testimonial section is intentionally hidden until genuine,
+approved testimonials and permission to display them there are confirmed.
+Provider-listing testimonials continue to use the plugin's moderation workflow.
 
 ## Configuration
 

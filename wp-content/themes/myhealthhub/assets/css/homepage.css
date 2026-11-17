@@ -69,6 +69,10 @@ body.home {
     background: #405b80 !important;
 }
 
+.home #mia-hero-quickstarts > p {
+    color: #d6e1f1 !important;
+}
+
 .home #mia-hero-input {
     color: #fff !important;
     font-size: 1rem !important;
@@ -395,6 +399,93 @@ body.home {
     margin-bottom: 20px;
 }
 
+/* Neutralize legacy global section and card styles on the homepage. */
+.home main > .mia-hero,
+.home main > .home-section {
+    margin: 0;
+}
+
+.home .home-card-grid,
+.home .home-card-title,
+.home .home-card-detail,
+.home .home-card-arrow {
+    background: none;
+    border: 0 !important;
+    border-image: none;
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+.home .home-card-grid:hover,
+.home .home-card-title:hover,
+.home .home-card-detail:hover,
+.home .home-card-arrow:hover,
+.home .home-card-icon:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.home .home-card-icon {
+    border: 0 !important;
+    border-image: none;
+    border-radius: 12px !important;
+    box-shadow: none;
+}
+
+.home .home-discovery-card,
+.home .home-search-card,
+.home .home-provider-card {
+    border: 1px solid var(--home-border) !important;
+    border-image: none;
+    border-radius: var(--home-radius) !important;
+}
+
+.home .home-discovery-card:hover,
+.home .home-search-card:hover {
+    border-color: #8ca9ce !important;
+    transform: none;
+}
+
+.home .home-provider-card:hover {
+    transform: none;
+}
+
+.home .wellness-tab-btn {
+    padding: 10px 20px !important;
+    border: 1px solid #b9c9de !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+    color: var(--home-navy) !important;
+    font-size: 1rem !important;
+    box-shadow: none;
+}
+
+.home .wellness-tab-btn.active {
+    border-color: var(--home-blue) !important;
+    background: var(--home-blue) !important;
+    color: #fff !important;
+}
+
+.home .wellness-tab-btn:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.home .wellness-tab-btn::before,
+.home .mia-chip::before {
+    content: none;
+}
+
+.home .mia-chip {
+    padding: 10px 14px !important;
+    box-shadow: none;
+}
+
+.home .mia-hero .voice-btn,
+.home .mia-hero .mia-send-btn {
+    padding: 0 !important;
+}
+
 @media (max-width: 768px) {
     .home .container {
         padding-left: 20px;
@@ -405,8 +496,22 @@ body.home {
         padding: 48px 0 !important;
     }
 
-    .home .mia-hero .mia-glass-card {
+    .home .mia-hero-heading {
+        flex-wrap: wrap;
+    }
+
+    .home .mia-hero-heading h1 {
+        flex-basis: 100%;
+    }
+
+    .home .mia-avatar-glow > div {
+        width: 75% !important;
+        height: 75% !important;
+    }
+
+    .home #mia-hero-interaction {
         max-width: 100% !important;
+        margin: 0 auto 28px !important;
     }
 
     .home .mia-chip {
@@ -436,6 +541,14 @@ body.home {
         align-items: flex-start;
         flex-direction: column;
         gap: 20px;
+    }
+
+    .home .mia-hero-composer {
+        padding: 16px !important;
+    }
+
+    .home .mia-hero-composer-row {
+        gap: 8px !important;
     }
 }
 

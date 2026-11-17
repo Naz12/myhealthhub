@@ -46,7 +46,7 @@
                         </svg>
                     </div>
                 </div>
-                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
+                <div class="mia-hero-heading" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
                     <h1 style="color: white; font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; margin: 0; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">Find the right support with Mia</h1>
                     <span style="background: linear-gradient(135deg, rgba(16,185,129,0.3) 0%, rgba(5,150,105,0.3) 100%); color: #6ee7b7; padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(52, 211, 153, 0.3);">
                         <span style="width: 6px; height: 6px; background: #6ee7b7; border-radius: 50%; box-shadow: 0 0 10px #34d399; animation: pulse 2s ease-in-out infinite;"></span>
@@ -98,9 +98,9 @@
                 </div>
                 
                 <!-- Input Area -->
-                <div style="padding: 20px 24px 24px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04);">
-                    <div style="display: flex; gap: 12px; align-items: flex-end;">
-                        <div style="flex: 1; position: relative;">
+                <div class="mia-hero-composer" style="padding: 20px 24px 24px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04);">
+                    <div class="mia-hero-composer-row" style="display: flex; gap: 12px; align-items: flex-end;">
+                        <div style="flex: 1; min-width: 0; position: relative;">
                             <textarea id="mia-hero-input"
                                       aria-label="Message Mia"
                                       placeholder="Ask me anything..." 
@@ -108,7 +108,8 @@
                                       style="width: 100%; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.15); border-radius: 28px; font-size: 1rem; resize: none; font-family: inherit; line-height: 1.5; min-height: 54px; max-height: 120px; background: rgba(255,255,255,0.08); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
                                       class="mia-input-glow"></textarea>
                         </div>
-                        <button id="mia-hero-voice" 
+                        <button id="mia-hero-voice"
+                                type="button" aria-label="Voice conversation mode"
                                 class="voice-btn"
                                 style="width: 54px; height: 54px; background: rgba(102, 126, 234, 0.15); border: 2px solid rgba(102, 126, 234, 0.3); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s; color: white; font-size: 32px !important; line-height: 1; padding: 0; min-width: 54px; min-height: 54px;"
                                 title="Voice conversation mode"
