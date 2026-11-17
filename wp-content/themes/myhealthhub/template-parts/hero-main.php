@@ -144,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px;">
+                    <div class="mia-hero-footer">
                         <span id="hero-typing" style="color: #6b7280; font-size: 0.85rem; display: none;">
                             <span style="display: inline-flex; align-items: center; gap: 8px;">
                                 <span style="display: inline-flex; gap: 4px;">
@@ -155,14 +155,14 @@
                                 Mia is thinking...
                             </span>
                         </span>
-                        <div style="display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: flex-end;">
-                            <button type="button" id="mia-hero-new-chat" class="mia-new-chat-btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.8rem; border-radius: 999px; padding: 8px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+                        <div class="mia-hero-actions">
+                            <button type="button" id="mia-hero-new-chat" class="mia-new-chat-btn mia-hero-action">
                                 <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m14.836 2A8.001 8.001 0 005.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-13.837-2m13.837 2H15"/>
                                 </svg>
                                 New chat
                             </button>
-                            <a href="<?php echo esc_url(myhh_get_directory_url()); ?>" class="mia-browse-link" style="color: #9ca3af; font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                            <a href="<?php echo esc_url(myhh_get_directory_url()); ?>" class="mia-browse-link mia-hero-action">
                                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                                 </svg>
