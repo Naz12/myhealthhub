@@ -268,7 +268,7 @@ function myhh_enqueue_assets() {
         'myhh-scripts',
         MYHH_THEME_URI . '/assets/js/main.js',
         array(),
-        MYHH_VERSION,
+        MYHH_VERSION . '-mobile-nav-20261117a',
         true
     );
     

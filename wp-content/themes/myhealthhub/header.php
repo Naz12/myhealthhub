@@ -35,7 +35,7 @@
         </div>
         
         <!-- Desktop Navigation -->
-        <nav class="main-navigation" style="display: flex; align-items: center; gap: 8px;" aria-label="<?php _e('Primary Navigation', 'myhealthhub'); ?>">
+        <nav class="main-navigation" style="align-items: center; gap: 8px;" aria-label="<?php _e('Primary Navigation', 'myhealthhub'); ?>">
             <ul class="nav-menu" style="display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0;">
                 <li style="position: relative;">
                     <a href="<?php echo esc_url(myhh_get_directory_url()); ?>" 
@@ -90,7 +90,7 @@
         <button class="mobile-menu-toggle" 
                 aria-label="<?php _e('Toggle menu', 'myhealthhub'); ?>" 
                 aria-expanded="false"
-                onclick="document.querySelector('.mobile-nav').classList.toggle('active');"
+                aria-controls="mobile-navigation"
                 style="display: none; background: none; border: none; cursor: pointer; padding: 6px;">
             <span style="display: block; width: 20px; height: 2px; background: #374151; margin: 4px 0; border-radius: 2px;"></span>
             <span style="display: block; width: 20px; height: 2px; background: #374151; margin: 4px 0; border-radius: 2px;"></span>
@@ -99,7 +99,7 @@
     </div>
     
     <!-- Mobile Navigation -->
-    <div class="mobile-nav" style="display: none; background: white; border-top: 1px solid #E5E7EB; padding: 16px 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <div id="mobile-navigation" class="mobile-nav" style="display: none; background: white; border-top: 1px solid #E5E7EB; padding: 16px 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         <ul style="list-style: none; margin: 0; padding: 0;">
             <li style="border-bottom: 1px solid #F3F4F6;">
                 <a href="<?php echo esc_url(myhh_get_directory_url()); ?>" style="display: block; padding: 12px 0; color: #374151; font-weight: 500; text-decoration: none;">All Providers</a>
@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         toggle.addEventListener('click', function() {
             var isExpanded = toggle.getAttribute('aria-expanded') === 'true';
             toggle.setAttribute('aria-expanded', !isExpanded);
+            mobileNav.classList.toggle('active', !isExpanded);
             mobileNav.style.display = isExpanded ? 'none' : 'block';
         });
         
@@ -162,6 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 toggle.style.display = 'none';
+                toggle.setAttribute('aria-expanded', 'false');
+                mobileNav.classList.remove('active');
                 mobileNav.style.display = 'none';
             }
         };
