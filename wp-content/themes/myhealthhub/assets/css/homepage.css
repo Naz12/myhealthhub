@@ -82,6 +82,190 @@ body.home {
     text-underline-offset: 3px;
 }
 
+.home .home-section {
+    padding: 72px 0 !important;
+    background: #fff;
+    color: var(--home-navy);
+}
+
+.home .home-section-tinted {
+    background: var(--home-surface);
+}
+
+.home .home-section-heading {
+    max-width: 720px;
+    margin: 0 auto 36px;
+    text-align: center;
+}
+
+.home .home-section-heading h2 {
+    margin: 0 0 12px;
+    color: var(--home-navy);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.home .home-section-heading p {
+    margin: 0;
+    color: var(--home-muted);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+.home .home-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: #1552a2;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.home .home-browse-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.home .wellness-tab-btn {
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 1px solid #b9c9de;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--home-navy);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.home .wellness-tab-btn.active {
+    border-color: var(--home-blue);
+    background: var(--home-blue);
+    color: #fff;
+}
+
+.home .wellness-tab-content[hidden] {
+    display: none;
+}
+
+.home .home-card-grid,
+.home .home-search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 16px;
+}
+
+.home .home-discovery-card,
+.home .home-search-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--home-border);
+    border-radius: var(--home-radius);
+    background: #fff;
+    color: var(--home-navy);
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(20, 35, 59, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home .home-discovery-card:hover,
+.home .home-search-card:hover {
+    border-color: #8ca9ce;
+    box-shadow: 0 8px 20px rgba(20, 35, 59, 0.09);
+    color: var(--home-navy);
+}
+
+.home .home-discovery-card {
+    min-height: 164px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.home .home-card-icon {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #e9f1fb;
+    color: #245ca9;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.home .home-card-title,
+.home .home-search-card {
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.home .home-card-detail {
+    color: var(--home-muted);
+    font-size: 0.875rem;
+}
+
+.home .home-card-arrow {
+    margin-left: auto;
+    color: #245ca9;
+    font-size: 1.2rem;
+}
+
+.home .home-discovery-card .home-card-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.home .home-search-card {
+    min-height: 92px;
+    align-items: center;
+}
+
+.home .home-section-action {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.home .home-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 1px solid var(--home-blue);
+    border-radius: 10px;
+    background: var(--home-blue);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.home .home-button-secondary {
+    background: #fff;
+    color: #174eaa;
+}
+
+.home .home-button:hover {
+    border-color: #174992;
+    background: #174992;
+    color: #fff;
+}
+
+.home .home-empty {
+    grid-column: 1 / -1;
+    color: var(--home-muted);
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .home .container {
         padding-left: 20px;
@@ -105,6 +289,14 @@ body.home {
         flex-direction: row !important;
         gap: 12px 20px !important;
         margin-top: 20px !important;
+    }
+
+    .home .home-section {
+        padding: 52px 0 !important;
+    }
+
+    .home .home-section-heading {
+        margin-bottom: 28px;
     }
 }
 
