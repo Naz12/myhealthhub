@@ -91,8 +91,8 @@ get_template_part('template-parts/how-it-works');
 // Insurance logos
 get_template_part('template-parts/insurance-section');
 
-// Testimonials
-get_template_part('template-parts/testimonials-section');
+// Homepage testimonials are omitted until genuine, approved content is available
+// and permission to display it on the homepage has been confirmed.
 
 // Final CTA
 get_template_part('template-parts/final-cta');

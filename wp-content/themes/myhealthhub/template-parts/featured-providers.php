@@ -125,15 +125,15 @@ $featured_providers = array_slice($diverse_providers, 0, 6);
 ?>
 
 <?php if ($featured_providers) : ?>
-<section style="padding: 80px 0; background: white;">
+<section class="home-section home-featured">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 56px;">
-            <span style="display: inline-block; background: #D1FAE5; color: #059669; padding: 6px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600; margin-bottom: 16px;">Featured Providers</span>
-            <h2 style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 16px; color: #1F2937;">Top Wellness Professionals</h2>
-            <p style="font-size: 1.125rem; color: #6B7280; max-width: 600px; margin: 0 auto;">Wellness professionals ready to help you on your journey.</p>
+        <div class="home-section-heading">
+            <span class="home-eyebrow">Featured providers</span>
+            <h2>Explore wellness professionals</h2>
+            <p>Explore profiles from across our provider directory.</p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px;">
+        <div class="home-featured-grid">
             <?php foreach ($featured_providers as $provider) :
                 $provider_id         = $provider->ID;
                 $credentials         = get_post_meta($provider_id, 'provider_credentials', true);
@@ -212,8 +212,8 @@ $featured_providers = array_slice($diverse_providers, 0, 6);
             endforeach; ?>
         </div>
         
-        <div style="text-align: center; margin-top: 48px;">
-            <a href="<?php echo esc_url(myhh_get_directory_url()); ?>" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #0A74DA 0%, #1D4ED8 100%); color: white; padding: 16px 36px; border-radius: 12px; font-weight: 600; text-decoration: none; font-size: 1rem; box-shadow: 0 8px 24px rgba(10, 116, 218, 0.25); transition: all 0.3s;">
+        <div class="home-section-action">
+            <a class="home-button home-button-secondary" href="<?php echo esc_url(myhh_get_directory_url()); ?>">
                 View All Providers
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
