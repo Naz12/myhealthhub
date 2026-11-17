@@ -74,6 +74,9 @@ body.home {
 }
 
 .home #mia-hero-input {
+    display: block;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
     color: #fff !important;
     font-size: 1rem !important;
 }
@@ -483,6 +486,10 @@ body.home {
 
 .home .mia-hero .voice-btn,
 .home .mia-hero .mia-send-btn {
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    min-height: 54px !important;
     padding: 0 !important;
 }
 
@@ -559,12 +566,6 @@ body.home {
 
     .home #mia-hero-messages {
         padding: 18px !important;
-    }
-
-    .home .mia-hero .voice-btn,
-    .home .mia-hero .mia-send-btn {
-        min-width: 48px !important;
-        min-height: 48px !important;
     }
 
     .home .home-provider-grid {
