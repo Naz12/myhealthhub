@@ -296,6 +296,11 @@ function myhh_enqueue_assets() {
         : MYHH_VERSION;
     wp_enqueue_style('myhh-interactive-redesign', MYHH_THEME_URI . '/assets/css/interactive-redesign.css', array('myhh-mia-ui-polish-global'), $interactive_redesign_version);
 
+    $site_shell_version = file_exists(MYHH_THEME_DIR . '/assets/css/site-shell.css')
+        ? filemtime(MYHH_THEME_DIR . '/assets/css/site-shell.css')
+        : MYHH_VERSION;
+    wp_enqueue_style('myhh-site-shell', MYHH_THEME_URI . '/assets/css/site-shell.css', array('myhh-responsive', 'myhh-interactive-redesign'), $site_shell_version);
+
     // Front-page-only Mia Hero assets
     if (is_front_page()) {
         $mia_realtime_v2 = defined('MYHH_MIA_REALTIME_V2')
