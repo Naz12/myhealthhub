@@ -47,14 +47,14 @@
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                    <h1 style="color: white; font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; margin: 0; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">Hi, I'm Mia</h1>
+                    <h1 style="color: white; font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700; margin: 0; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">Find the right support with Mia</h1>
                     <span style="background: linear-gradient(135deg, rgba(16,185,129,0.3) 0%, rgba(5,150,105,0.3) 100%); color: #6ee7b7; padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(52, 211, 153, 0.3);">
                         <span style="width: 6px; height: 6px; background: #6ee7b7; border-radius: 50%; box-shadow: 0 0 10px #34d399; animation: pulse 2s ease-in-out infinite;"></span>
                         Online
                     </span>
                 </div>
                 <p style="color: rgba(255,255,255,0.8); font-size: clamp(1rem, 2.5vw, 1.25rem); margin: 0; line-height: 1.6; text-shadow: 0 1px 10px rgba(0,0,0,0.2);">
-                    Calm, guided help for finding the right support
+                    Tell Mia what you need, or explore providers at your own pace.
                 </p>
             </div>
             
@@ -101,7 +101,8 @@
                 <div style="padding: 20px 24px 24px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04);">
                     <div style="display: flex; gap: 12px; align-items: flex-end;">
                         <div style="flex: 1; position: relative;">
-                            <textarea id="mia-hero-input" 
+                            <textarea id="mia-hero-input"
+                                      aria-label="Message Mia"
                                       placeholder="Ask me anything..." 
                                       rows="1"
                                       style="width: 100%; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.15); border-radius: 28px; font-size: 1rem; resize: none; font-family: inherit; line-height: 1.5; min-height: 54px; max-height: 120px; background: rgba(255,255,255,0.08); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
@@ -116,7 +117,8 @@
                             <span id="mic-icon" style="display: inline; line-height: 1; font-size: 32px !important;">🎤</span>
                             <span id="mic-active-icon" style="display: none; line-height: 1; font-size: 32px !important;">🔴</span>
                         </button>
-                        <button id="mia-hero-send" 
+                        <button id="mia-hero-send"
+                                type="button" aria-label="Send message"
                                 class="mia-send-btn"
                                 style="width: 54px; height: 54px; background: linear-gradient(135deg, #6366f1 0%, #7c7cf0 50%, #5b7cf7 100%); color: white; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);">
                             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -158,7 +160,7 @@
                                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                                 </svg>
-                                Browse directory
+                                Browse providers
                             </a>
                         </div>
                     </div>
@@ -200,7 +202,7 @@
     </div>
     
     <!-- Wave Divider -->
-    <div style="position: absolute; bottom: -1px; left: 0; right: 0;">
+    <div class="mia-hero-wave" style="position: absolute; bottom: -1px; left: 0; right: 0;">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width: 100%; height: 80px; display: block;">
             <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
         </svg>

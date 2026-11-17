@@ -320,6 +320,11 @@ wp_enqueue_style('myhh-mia-hero', MYHH_THEME_URI . '/assets/css/mia-hero.css', a
             : MYHH_VERSION;
         wp_enqueue_style('myhh-mia-mobile-polish', MYHH_THEME_URI . '/assets/css/mia-mobile-polish.css', array('myhh-mia-voice-states'), $mia_mobile_polish_version);
 
+        $homepage_css_version = file_exists(MYHH_THEME_DIR . '/assets/css/homepage.css')
+            ? filemtime(MYHH_THEME_DIR . '/assets/css/homepage.css')
+            : MYHH_VERSION;
+        wp_enqueue_style('myhh-homepage', MYHH_THEME_URI . '/assets/css/homepage.css', array('myhh-interactive-redesign', 'myhh-mia-mobile-polish'), $homepage_css_version);
+
         // Mia Hero JavaScript (utils → chat → voice chain)
         $mia_voice_utils_version = file_exists(MYHH_THEME_DIR . '/assets/js/mia-voice-utils.js')
             ? filemtime(MYHH_THEME_DIR . '/assets/js/mia-voice-utils.js')

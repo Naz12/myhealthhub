@@ -1,0 +1,125 @@
+/* Homepage-only design foundation. */
+body.home {
+    --home-navy: #14233b;
+    --home-blue: #1d5bc6;
+    --home-muted: #526179;
+    --home-border: #dce4ef;
+    --home-surface: #f5f8fc;
+    --home-radius: 16px;
+}
+
+.home .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.home section h2,
+.home section h3 {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+}
+
+.home :is(a, button, textarea):focus-visible {
+    outline: 3px solid #35b8bd;
+    outline-offset: 3px;
+}
+
+.home .mia-hero {
+    min-height: 0 !important;
+    padding: 72px 0 !important;
+    background: #14233b !important;
+}
+
+.home .mia-hero .mia-bg-container,
+.home .mia-hero-wave {
+    display: none;
+}
+
+.home .mia-hero h1 {
+    font-size: clamp(2rem, 4vw, 3.25rem) !important;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+}
+
+.home .mia-hero .mia-glass-card {
+    max-width: 800px !important;
+    margin: 0 auto 28px !important;
+    border-radius: 20px !important;
+    background: #203450 !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18) !important;
+}
+
+.home #mia-hero-messages {
+    min-height: 150px !important;
+}
+
+.home .mia-chip {
+    min-height: 44px;
+    background: #304768 !important;
+    border: 1px solid #6681a5 !important;
+    color: #fff !important;
+    font-size: 0.9rem !important;
+}
+
+.home .mia-chip:hover {
+    background: #405b80 !important;
+}
+
+.home #mia-hero-input {
+    color: #fff !important;
+    font-size: 1rem !important;
+}
+
+.home .mia-browse-link {
+    color: #fff !important;
+    font-size: 0.9rem !important;
+    font-weight: 600;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .home .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .home .mia-hero {
+        padding: 48px 0 !important;
+    }
+
+    .home .mia-hero .mia-glass-card {
+        max-width: 100% !important;
+    }
+
+    .home .mia-chip {
+        flex: 1 1 180px !important;
+        font-size: 0.875rem !important;
+    }
+
+    .home .trust-indicators {
+        flex-direction: row !important;
+        gap: 12px 20px !important;
+        margin-top: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .home .mia-hero h1 {
+        font-size: 2rem !important;
+    }
+
+    .home #mia-hero-messages {
+        padding: 18px !important;
+    }
+
+    .home .mia-hero .voice-btn,
+    .home .mia-hero .mia-send-btn {
+        min-width: 48px !important;
+        min-height: 48px !important;
+    }
+}
